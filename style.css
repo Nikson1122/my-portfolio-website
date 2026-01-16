@@ -518,6 +518,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
   .contact-card {
     grid-template-columns: 1fr;
   }
@@ -851,6 +855,12 @@ body {
 
   .section-title {
     font-size: 22px;
+  }
+
+  .about-description {
+    text-align: justify;
+    hyphens: auto;
+    word-spacing: -0.05em;
   }
 
   .contact-wrapper {
