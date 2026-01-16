@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Nikson Shrestha</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html#home">Nikson<span>Shrestha</span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#blogs">Blog</a>
+        <a href="resume.html">Resume</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <!-- BLOG POST -->
+  <section class="blog-post-section">
+    <div class="container">
+      <article class="blog-post" id="blogPost">
+        <div class="blog-loading">Loading blog...</div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Nikson Shrestha</p>
+    </div>
+  </footer>
+
+  <script src="blogs.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Get blog ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const blogId = parseInt(urlParams.get('id')) || 1;
+
+    // Find the blog
+    const blog = blogs.find(b => b.id === blogId);
+
+    if (blog) {
+      document.title = `${blog.title} | Nikson Shrestha`;
+      
+      const blogPost = document.getElementById('blogPost');
+      blogPost.innerHTML = `
+        <div class="blog-header">
+          <h1>${blog.title}</h1>
+          <p class="blog-meta">
+            <span class="author">By Nikson Shrestha</span>
+            <span class="date">${blog.date}</span>
+          </p>
+          ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-featured-image">` : ''}
+        </div>
+
+        <div class="blog-content">
+          ${blog.content}
+        </div>
+
+        <div class="blog-footer">
+          <a href="index.html#blogs" class="btn secondary">← Back to Blogs</a>
+        </div>
+      `;
+    } else {
+      document.getElementById('blogPost').innerHTML = `
+        <div class="blog-error">
+          <h2>Blog not found</h2>
+          <p>The blog you're looking for doesn't exist.</p>
+          <a href="index.html#blogs" class="btn secondary">← Back to Blogs</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

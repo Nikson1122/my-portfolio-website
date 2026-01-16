@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Java Spring Boot Best Practices | Nikson Shrestha</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html#home">Nikson<span>Shrestha</span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#blogs">Blog</a>
+        <a href="resume.html">Resume</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <!-- BLOG POST -->
+  <section class="blog-post-section">
+    <div class="container">
+      <article class="blog-post">
+        <div class="blog-header">
+          <h1>Java Spring Boot Best Practices</h1>
+          <p class="blog-meta">
+            <span class="author">By Nikson Shrestha</span>
+            <span class="date">January 15, 2026</span>
+          </p>
+        </div>
+
+        <div class="blog-content">
+          <p>
+            Spring Boot has revolutionized the way we build Java applications. In this article, I'll share some best practices I've learned while working with Spring Boot in production environments.
+          </p>
+
+          <h2>1. Project Structure</h2>
+          <p>
+            Organizing your project properly from the start saves time later. Use a layered architecture with clear separation of concerns:
+          </p>
+          <ul>
+            <li>Controllers - Handle HTTP requests</li>
+            <li>Services - Business logic</li>
+            <li>Repositories - Database access</li>
+            <li>Models - Entity classes</li>
+          </ul>
+
+          <h2>2. Configuration Management</h2>
+          <p>
+            Always externalize your configuration. Use application.yml or application.properties files and environment variables for sensitive data like database credentials and API keys.
+          </p>
+
+          <h2>3. Error Handling</h2>
+          <p>
+            Implement proper exception handling with custom exceptions and a global exception handler. This ensures consistent error responses across your API.
+          </p>
+
+          <h2>4. Testing</h2>
+          <p>
+            Write unit tests for your business logic and integration tests for your controllers. Use JUnit 5 and Mockito for testing Spring Boot applications effectively.
+          </p>
+
+          <h2>5. Performance Optimization</h2>
+          <p>
+            Consider caching frequently accessed data, use pagination for large datasets, and optimize your database queries. Spring Boot provides excellent tools for these optimizations.
+          </p>
+
+          <p>
+            These practices have helped me build robust and maintainable Spring Boot applications. I hope they're useful for your projects too!
+          </p>
+        </div>
+
+        <div class="blog-footer">
+          <a href="index.html#blogs" class="btn secondary">← Back to Blogs</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Nikson Shrestha</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikson Shrestha | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="logo" href="#home">Nikson<span>Shrestha</span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#blogs">Blog</a>
+        <a href="resume.html">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO TERMINAL -->
+  <section class="hero" id="home">
+    <div class="container">
+
+      <div class="terminal-box">
+        <div class="term-line">
+          <span class="term-prompt">$</span>
+          <span class="term-cmd" id="cmd1"></span>
+        </div>
+
+        <h1 class="term-title" id="title"></h1>
+
+        <div class="term-line">
+          <span class="term-prompt">$</span>
+          <span class="term-cmd" id="cmd2"></span>
+        </div>
+
+        <p class="term-mission" id="mission"></p>
+
+        <div class="term-line">
+          <span class="term-prompt">$</span>
+          <span class="term-cmd" id="cmd3"></span>
+        </div>
+
+        <p class="term-about" id="about"></p>
+
+        <div class="hero-buttons" id="heroButtons">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-head">
+        <h2>Skills & Tools</h2>
+        <p>Stacks and tools I use in real projects</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+          <span>Java</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot">
+          <span>Spring Boot</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+          <span>Python</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/django.svg" alt="Django">
+          <span>Django</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+          <span>MySQL</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+          <span>PostgreSQL</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+          <span>Docker</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Actions">
+          <span>GitHub Actions</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux Server">
+          <span>Linux Server</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cpanel.svg" alt="cPanel">
+          <span>cPanel Hosting</span>
+        </div>
+
+        <div class="skill-pill">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" alt="AI/ML">
+          <span>Basic AI/ML</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS WITH YOUR IMAGES -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>My featured work (replace links + images)</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <img class="project-img" src="https://ndrfnepal.org/static/app/images/homendrf.jpg" alt="Nepal Disaster Resilience Foundation">
+          <h3>Nepal Disaster Resilience Foundation (NDRF)</h3>
+          <p>A platform dedicated to strengthening disaster risk reduction and resilience in Nepal through awareness, training, research, and evidence-based advocacy.</p>
+          <p class="tech-stack"><strong>Tech Stack:</strong> Django, Python, PostgreSQL</p>
+          <div class="links">
+            <a href="https://ndrfnepal.org/" target="_blank">Live</a>
+            <a href="https://www.facebook.com/profile.php?id=61584238079194" target="_blank">Facebook</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="project-img" src="http://100.29.204.101/static/images/laborreport.png" alt="Gothalo Construction Management">
+          <h3>Gothalo - Construction Management System</h3>
+          <p>A comprehensive solution for daily work reports, inventory management, and labor attendance tracking in construction projects.</p>
+          <p class="tech-stack"><strong>Tech Stack:</strong> Django, Python, PostgreSQL</p>
+          <div class="links">
+            <a href="http://100.29.204.101/" target="_blank">Live</a>
+            <a href="https://www.instagram.com/gothalo_insta/" target="_blank">Instagram</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="project-img" src="images/project3.png" alt="Project 3">
+          <h3>Project 3 Title</h3>
+          <p>Short description of your project.</p>
+          <div class="links">
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">Live</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY / IMAGES -->
+  <section class="section section-alt" id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <h2>Gallery</h2>
+        <p>More of my work and experiences</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/gallery1.png" alt="Gallery 1">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/gallery2.png" alt="Gallery 2">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/gallery3.png" alt="Gallery 3">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/gallery4.png" alt="Gallery 4">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOGS -->
+  <section class="section" id="blogs">
+    <div class="container">
+      <div class="section-head">
+        <h2>Blog</h2>
+        <p>Latest articles and technical insights</p>
+      </div>
+
+      <div class="blogs-grid" id="blogsGrid">
+        <!-- Blog cards will be generated here dynamically -->
+      </div>
+
+      <div class="section-bottom" style="text-align: center; margin-top: 40px;">
+        <p style="margin-bottom: 20px; font-size: 16px; line-height: 1.6; color: white;">
+          I am a skilled Java and Python backend developer with expertise in building scalable web systems and robust APIs. With a strong foundation in both Java Spring Boot and Python Django frameworks, I specialize in designing database-driven applications, implementing CI/CD pipelines, and deploying production systems using modern DevOps tools like Docker and GitHub Actions. Currently serving as a full-stack developer, I bring hands-on experience in microservices architecture, RESTful API design, cloud deployment, and infrastructure automation. My expertise spans the full application stack, from backend development to database optimization and DevOps practices. Additionally, I am pursuing a Master of Business Studies (MBS) degree at NCC College, Tribhuwan University, which complements my technical expertise with business acumen and strategic thinking.
+        </p>
+        <a href="resume.html" class="btn primary">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Get in touch with me</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <!-- Contact Info Card -->
+        <div class="contact-info-card">
+          <div class="contact-info-header">
+            <i class="fas fa-envelope"></i>
+            <h3>Contact Info</h3>
+          </div>
+
+          <div class="contact-info-item">
+            <h4>Email:</h4>
+            <p><a href="mailto:sthanikson2000@gmail.com">sthanikson2000@gmail.com</a></p>
+          </div>
+
+          <div class="contact-info-item">
+            <h4>Location:</h4>
+            <p>Lalitpur, Nepal</p>
+          </div>
+
+          <div class="contact-info-item">
+            <h4>Socials:</h4>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/nikson-shrestha-a39387213/" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://github.com/Nikson1122" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.facebook.com/nishant.shrestha.5" target="_blank" title="Facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-card">
+          <h3>Send me a Message</h3>
+          <form class="contact-form" name="contact" method="POST" data-netlify="true">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button class="btn primary" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Nikson Shrestha</p>
+    </div>
+  </footer>
+
+  <script src="blogs.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
+
