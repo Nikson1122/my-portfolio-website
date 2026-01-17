@@ -284,6 +284,8 @@ body {
   margin: 12px 0;
   font-weight: 700;
   text-align: justify;
+  hyphens: auto;
+  word-spacing: -0.05em;
 }
 
 .project-card p {
@@ -291,6 +293,9 @@ body {
   font-size: 14px;
   line-height: 1.7;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  word-spacing: -0.05em;
   margin-bottom: 12px;
 }
 
@@ -524,6 +529,17 @@ body {
 
   .contact-card {
     grid-template-columns: 1fr;
+  }
+
+  .project-card h3 {
+    text-align: left;
+    hyphens: none;
+    word-spacing: normal;
+  }
+
+  .project-card p {
+    text-align: justify;
+    hyphens: auto;
   }
 }
 

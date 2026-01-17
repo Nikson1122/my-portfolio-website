@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const data = {
     cmd1: "whoami",
     title: "Java and Python Developer",
-    cmd2: "echo $MISSION",
+    cmd2: "$MISSION",
     mission: "Building scalable web systems with code and data",
     cmd3: "cat about_me.txt",
     about:
