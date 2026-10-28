@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Nikson Shrestha</title>
+  <meta name="description" content="Production systems built by Nikson Shrestha: BusSewa online bus ticketing, the NDRF non-profit platform and the Gothalo construction management system." />
+  <meta name="author" content="Nikson Shrestha" />
+  <link rel="canonical" href="https://niksonshrestha.netlify.app/projects.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Projects | Nikson Shrestha" />
+  <meta property="og:description" content="Production systems built by Nikson Shrestha: BusSewa online bus ticketing, the NDRF non-profit platform and the Gothalo construction management system." />
+  <meta property="og:url" content="https://niksonshrestha.netlify.app/projects.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070a14'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='30' font-weight='bold' text-anchor='middle' fill='%230ea5e9'%3ENS%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">Nikson<span>Shrestha</span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="blogs.html">Blog</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Production systems I have designed, built and deployed</p>
+      </div>
+
+      <div class="work-list">
+
+        <article class="work-card">
+          <div class="work-media work-media-icon">
+            <i class="fas fa-bus"></i>
+            <span class="work-media-label">BusSewa</span>
+          </div>
+
+          <div class="work-body">
+            <div class="work-top">
+              <span class="work-role">Java Backend Developer &middot; June 2025 &ndash; Present &middot; Diyalo Technology</span>
+              <h3>BusSewa &mdash; Online Bus Ticketing Platform</h3>
+              <p class="work-tagline">Nepal&rsquo;s fastest-growing online ticket booking platform.</p>
+            </div>
+
+            <p class="work-summary">
+              BusSewa lets passengers across Nepal search routes, pick seats and pay online, issuing an instant
+              digital ticket. The platform spans <strong>400+ routes across 65+ districts</strong>, works with
+              <strong>500+ bus partners</strong> and <strong>1,700+ daily buses</strong>, and serves mobile apps with
+              <strong>500K+ Android downloads</strong>. I work on the backend that powers all of it.
+            </p>
+
+            <ul class="work-points">
+              <li><strong>Backend services &amp; REST APIs</strong> consumed by the website and the Android and iOS apps &mdash; search, booking, ticketing, cancellation and operator endpoints.</li>
+              <li><strong>Payment gateway integrations</strong> across eSewa, Khalti, IME Pay, NCHL connectIPS and MyPay &mdash; payment initiation, verification callbacks, idempotent transaction handling, failure recovery and refunds on cancellation.</li>
+              <li><strong>Booking &amp; seat-inventory engine</strong> with seat locking and transactional integrity, so concurrent users cannot double-book the same seat on high-demand routes.</li>
+              <li><strong>Route, schedule and fleet modules</strong> letting operators manage buses, layouts, fares and departures against a live inventory of 55k+ seats a day.</li>
+              <li><strong>Promo codes and flash-sale logic</strong>, including validation rules, usage limits and discount application at checkout.</li>
+              <li><strong>Enterprise web interfaces in JSF</strong> for internal and operator-facing administration.</li>
+              <li><strong>Database design and query optimisation</strong> for a high-read, booking-heavy workload, plus notification flows for ticket confirmation.</li>
+            </ul>
+
+            <div class="work-tech">
+              <span>Java</span><span>JSF</span><span>Spring Boot</span><span>REST APIs</span>
+              <span>Payment Gateways</span><span>PostgreSQL</span><span>Linux</span>
+            </div>
+
+            <div class="work-links">
+              <a class="btn primary" href="https://bussewa.com.np/" target="_blank" rel="noopener">Visit Live Platform</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-media">
+            <img src="https://ndrfnepal.org/static/app/images/homendrf.jpg" alt="Nepal Disaster Resilience Foundation website">
+          </div>
+
+          <div class="work-body">
+            <div class="work-top">
+              <span class="work-role">Full-Stack Developer &middot; June 2024 &ndash; Present</span>
+              <h3>Nepal Disaster Resilience Foundation</h3>
+              <p class="work-tagline">&ldquo;Building resilience through information and action.&rdquo;</p>
+            </div>
+
+            <p class="work-summary">
+              The digital platform of a national non-profit working to make Nepal disaster-resilient. I built
+              the site from concept to production and continue to maintain it &mdash; it is the organisation&rsquo;s
+              primary channel for awareness, training programmes, research and evidence-based advocacy.
+            </p>
+
+            <ul class="work-points">
+              <li><strong>Owned the full lifecycle</strong> &mdash; requirements, Django application, PostgreSQL schema design, deployment and ongoing maintenance.</li>
+              <li><strong>Member portal</strong> with authenticated login for institutions, professionals and partners.</li>
+              <li><strong>Content modules</strong> for events, articles, blogs and FAQs, so staff publish without developer help.</li>
+              <li><strong>Donation &amp; newsletter flows</strong> supporting fundraising and subscriber outreach.</li>
+              <li><strong>Public-service content</strong> on earthquake readiness, flood mitigation and climate adaptation, plus a 24/7 helpline.</li>
+            </ul>
+
+            <div class="work-tech">
+              <span>Django</span><span>Python</span><span>PostgreSQL</span><span>JavaScript</span><span>Linux</span>
+            </div>
+
+            <div class="work-links">
+              <a class="btn primary" href="https://ndrfnepal.org/" target="_blank" rel="noopener">Visit Live Site</a>
+              <a class="btn secondary" href="blog.html?id=1">Read Case Study</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-media">
+            <img src="images/home.jpeg" alt="Gothalo construction management system">
+          </div>
+
+          <div class="work-body">
+            <div class="work-top">
+              <span class="work-role">Full-Stack Developer</span>
+              <h3>Gothalo &mdash; Construction Management System</h3>
+              <p class="work-tagline">Replacing paper site records with one source of truth.</p>
+            </div>
+
+            <p class="work-summary">
+              A management system for construction firms that brings daily site reporting, material stock and
+              labour attendance into a single Django application, so site engineers and head office work from
+              the same live data instead of paper registers and spreadsheets.
+            </p>
+
+            <ul class="work-points">
+              <li><strong>Daily work reports</strong> filed from site, giving management same-day visibility on progress.</li>
+              <li><strong>Inventory tracking</strong> for material issue and consumption against each project.</li>
+              <li><strong>Labour attendance</strong> records that feed directly into wage and manpower reporting.</li>
+              <li><strong>Role-based access</strong> separating site staff, supervisors and administrators.</li>
+              <li><strong>Deployed to a live cloud server</strong> and running in production.</li>
+            </ul>
+
+            <div class="work-tech">
+              <span>Django</span><span>Python</span><span>PostgreSQL</span><span>Docker</span>
+            </div>
+
+            <div class="work-links">
+              <a class="btn primary" href="http://100.29.204.101/" target="_blank" rel="noopener">View Live Demo</a>
+              <a class="btn secondary" href="blog.html?id=2">Read Case Study</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <p class="footer-name">Nikson Shrestha</p>
+        <p class="footer-role">Java &amp; Python Backend Developer &middot; Lalitpur, Nepal</p>
+      </div>
+
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="footer-social">
+        <a href="https://github.com/Nikson1122" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/nikson-shrestha-a39387213" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:sthanikson2000@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="container footer-base">
+      <p>&copy; <span id="year"></span> Nikson Shrestha. Built from scratch with HTML, CSS and JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="blogs.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>

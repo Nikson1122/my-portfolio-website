@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://niksonshrestha.netlify.app/sitemap.xml

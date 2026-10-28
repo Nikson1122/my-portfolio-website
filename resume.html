@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume | Nikson Shrestha</title>
+  <meta name="description" content="Resume of Nikson Shrestha, Java and Python backend developer with production experience in REST APIs, payment gateways and cloud deployment." />
+  <meta name="author" content="Nikson Shrestha" />
+  <link rel="canonical" href="https://niksonshrestha.netlify.app/resume.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Resume | Nikson Shrestha" />
+  <meta property="og:description" content="Resume of Nikson Shrestha, Java and Python backend developer with production experience in REST APIs, payment gateways and cloud deployment." />
+  <meta property="og:url" content="https://niksonshrestha.netlify.app/resume.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070a14'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='30' font-weight='bold' text-anchor='middle' fill='%230ea5e9'%3ENS%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -12,14 +23,15 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container nav-wrap">
-      <a class="logo" href="index.html#home">Nikson<span>Shrestha</span></a>
+      <a class="logo" href="index.html">Nikson<span>Shrestha</span></a>
 
       <nav class="nav-links" id="navLinks">
-        <a href="index.html#skills">Skills</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#blogs">Blog</a>
-        <a href="resume.html">Resume</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="blogs.html">Blog</a>
+        <a href="resume.html" class="active">Resume</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
       <button class="menu-btn" id="menuBtn">☰</button>
@@ -29,147 +41,212 @@
   <!-- RESUME SECTION -->
   <section class="resume-section">
     <div class="container">
-      <div class="resume-header">
-        <h1>Nikson Shrestha</h1>
-        <p class="resume-title">Java and Python Developer</p>
-        <p class="resume-contact">sthanikso2000@gmail.com | 9862769322</p>
-      </div>
 
-      <!-- PROFESSIONAL JOURNEY -->
-      <div class="resume-card">
-        <h2 class="section-title">Professional Journey</h2>
-        <p class="section-description">
-          With a passion for backend development, I've built a career creating scalable web systems and robust APIs. My journey started with Java and Spring Boot, and has expanded to include Python and Django for full-stack development. I specialize in designing database-driven applications, implementing CI/CD pipelines, and deploying production systems using modern DevOps tools.
-        </p>
-        <p class="section-description">
-          I have hands-on experience with microservices architecture, RESTful API design, and cloud deployment. I'm committed to writing clean, maintainable code and following software engineering best practices. My expertise spans from backend development to infrastructure automation, allowing me to contribute effectively across the full application stack.
-        </p>
+      <!-- HEADER -->
+      <div class="resume-top">
+        <div class="resume-identity">
+          <h1>Nikson Shrestha</h1>
+          <p class="resume-title">Java &amp; Python Backend Developer</p>
+          <p class="resume-summary">
+            Backend developer with <strong>3+ years</strong> of production experience building REST APIs,
+            payment gateway integrations and database-driven web systems in Java (Spring Boot, JSF) and
+            Python (Django), and deploying them with Docker, GitHub Actions and Linux hosting. Currently
+            building the backend for BusSewa, a national ticketing platform serving 500K+ app users.
+          </p>
+
+          <ul class="resume-contacts">
+            <li><i class="fas fa-envelope"></i><a href="mailto:sthanikson2000@gmail.com">sthanikson2000@gmail.com</a></li>
+            <li><i class="fas fa-phone"></i><a href="tel:+9779862769322">+977 9862769322</a></li>
+            <li><i class="fas fa-location-dot"></i><span>Lalitpur, Nepal</span></li>
+          </ul>
+
+          <div class="resume-links">
+            <a href="https://github.com/Nikson1122" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> github.com/Nikson1122
+            </a>
+            <a href="https://www.linkedin.com/in/nikson-shrestha-a39387213" target="_blank" rel="noopener">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://niksonshrestha.netlify.app/" target="_blank" rel="noopener">
+              <i class="fas fa-globe"></i> niksonshrestha.netlify.app
+            </a>
+          </div>
+        </div>
+
+        <div class="resume-actions">
+          <button class="btn primary" id="downloadPdf" type="button">
+            <i class="fas fa-file-arrow-down"></i> Download PDF
+          </button>
+          <p class="resume-actions-note">Opens your print dialog &mdash; choose &ldquo;Save as PDF&rdquo;.</p>
+        </div>
       </div>
 
       <!-- EXPERIENCE -->
       <div class="resume-card">
-        <h2 class="section-title">Experience</h2>
-        
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
+
         <div class="experience-item">
           <div class="exp-header">
-            <h3>Java Developer - Bussewa Project</h3>
-            <span class="exp-duration">June 2025 - Present</span>
+            <h3>Java Backend Developer &mdash; BusSewa</h3>
+            <span class="exp-duration">June 2025 &ndash; Present</span>
           </div>
-          <p class="exp-company">Diyalo Technology</p>
+          <p class="exp-company">Diyalo Technology, New Baneshwor</p>
+          <p class="exp-context">
+            BusSewa is Nepal&rsquo;s fastest-growing online bus ticketing platform &mdash; 400+ routes across 65+
+            districts, 500+ bus partners, 1,700+ daily buses and 500K+ Android app downloads.
+          </p>
           <ul class="exp-details">
-            <li>Developing and maintaining Java applications using JSF (JavaServer Faces)</li>
-            <li>Building enterprise-level web applications with modern UI components</li>
-            <li>Designing and optimizing database schemas for performance</li>
-            <li>Collaborating with cross-functional teams on Bussewa project development</li>
+            <li>Develop and maintain the backend services and <strong>REST APIs</strong> powering the website and the Android and iOS applications &mdash; route search, seat availability, booking, ticketing and cancellation.</li>
+            <li>Integrated and maintain <strong>payment gateways</strong> &mdash; eSewa, Khalti, IME Pay, NCHL connectIPS and MyPay &mdash; covering payment initiation, verification callbacks, idempotent transaction handling, failed-payment recovery and refunds on ticket cancellation.</li>
+            <li>Built booking and <strong>seat-inventory logic</strong> with seat locking and transactional integrity, preventing double booking under concurrent load on high-demand routes.</li>
+            <li>Implemented <strong>route, schedule and fleet management</strong> modules for operators, handling bus layouts, fares and departures against a daily inventory of 55k+ seats.</li>
+            <li>Developed <strong>promo code and flash-sale</strong> logic with validation rules, usage limits and checkout discounting.</li>
+            <li>Build enterprise administration interfaces in <strong>JSF</strong> for internal and operator-facing users.</li>
+            <li>Designed and optimised <strong>database schemas and queries</strong> for a booking-heavy, high-read workload, and implemented ticket notification flows.</li>
           </ul>
         </div>
 
         <div class="experience-item">
           <div class="exp-header">
-            <h3>Full Stack Web Developer (Part-time)</h3>
-            <span class="exp-duration">June 2024 - Present</span>
+            <h3>Full-Stack Web Developer (Part-time)</h3>
+            <span class="exp-duration">June 2024 &ndash; Present</span>
           </div>
           <p class="exp-company">Nepal Disaster Resilience Foundation (NDRF)</p>
           <ul class="exp-details">
-            <li>Developed the NDRF website from concept to production deployment</li>
-            <li>Implemented full-stack Django application with PostgreSQL database</li>
-            <li>Maintained and updated website features based on organizational needs</li>
-            <li>Handled website maintenance, bug fixes, and performance optimization</li>
+            <li>Built the NDRF platform from concept to production deployment as a full-stack Django application with PostgreSQL.</li>
+            <li>Delivered a member portal with authenticated access for institutions, professionals and partners.</li>
+            <li>Implemented content modules for events, articles, blogs and FAQs so staff publish without developer involvement.</li>
+            <li>Added donation and newsletter flows supporting the organisation&rsquo;s fundraising and outreach.</li>
+            <li>Handle ongoing maintenance, feature work, bug fixes and performance optimisation.</li>
           </ul>
         </div>
 
         <div class="experience-item">
           <div class="exp-header">
             <h3>Django Developer (Intern)</h3>
-            <span class="exp-duration">January 2024 - June 2024</span>
+            <span class="exp-duration">January 2024 &ndash; June 2024</span>
           </div>
           <p class="exp-company">IT Nepal Solution</p>
           <ul class="exp-details">
-            <li>Developed Django web applications and features</li>
-            <li>Worked with PostgreSQL and MySQL databases</li>
-            <li>Implemented RESTful APIs for web projects</li>
-            <li>Participated in code reviews and learned best practices</li>
+            <li>Developed Django web applications and features for client projects.</li>
+            <li>Worked with PostgreSQL and MySQL databases, including schema changes and migrations.</li>
+            <li>Implemented RESTful APIs for web projects.</li>
+            <li>Participated in code reviews and adopted team engineering practices.</li>
           </ul>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="resume-card">
+        <h2 class="section-title"><i class="fas fa-diagram-project"></i> Projects</h2>
+
+        <div class="experience-item">
+          <div class="exp-header">
+            <h3>Gothalo &mdash; Construction Management System <span class="proj-tag personal">Personal Project</span></h3>
+            <span class="exp-duration">Django &middot; PostgreSQL &middot; Docker</span>
+          </div>
+          <ul class="exp-details">
+            <li>Management system unifying daily site work reports, material inventory and labour attendance in one application.</li>
+            <li>Role-based access separating site staff, supervisors and administrators; deployed and running in production.</li>
+          </ul>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-header">
+            <h3>ndrfnepal.org &mdash; Non-profit Platform <span class="proj-tag freelance">Freelance</span></h3>
+            <span class="exp-duration">Django &middot; PostgreSQL</span>
+          </div>
+          <ul class="exp-details">
+            <li>Public platform for a national disaster-resilience organisation, with member portal, events, articles and donation flows.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="resume-card">
+        <h2 class="section-title"><i class="fas fa-code"></i> Technical Skills</h2>
+        <div class="resume-skill-rows">
+          <div class="resume-skill-row">
+            <h4>Backend</h4>
+            <p>Java, Spring Boot, JSF, Python, Django, REST API design, microservices, payment gateway integration</p>
+          </div>
+          <div class="resume-skill-row">
+            <h4>Databases</h4>
+            <p>PostgreSQL, MySQL, schema design, query optimisation, migrations, Hibernate &amp; Django ORM</p>
+          </div>
+          <div class="resume-skill-row">
+            <h4>DevOps</h4>
+            <p>Docker, GitHub Actions, CI/CD pipelines, Linux server administration, cPanel hosting, Git</p>
+          </div>
+          <div class="resume-skill-row">
+            <h4>Frontend</h4>
+            <p>HTML5, CSS3, JavaScript, responsive layouts, Django templates</p>
+          </div>
+          <div class="resume-skill-row">
+            <h4>AI Tools</h4>
+            <p>Claude &amp; Claude Code, OpenAI Codex, Google Gemini, AI-assisted development, basic AI/ML concepts</p>
+          </div>
         </div>
       </div>
 
       <!-- EDUCATION -->
       <div class="resume-card">
         <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
-        
+
         <div class="education-item">
           <div class="edu-header">
             <h3>Master of Business Studies (MBS)</h3>
-            <span class="edu-year">2025 - Present</span>
+            <span class="edu-year">2025 &ndash; Present</span>
           </div>
           <p class="edu-institution">NCC College, Tribhuwan University</p>
-          <p class="edu-details">Advanced studies in business management and organizational leadership</p>
+          <p class="edu-details">Studying the business side of software &mdash; requirements, cost and
+          users &mdash; to complement my engineering background and support product decisions.</p>
         </div>
 
         <div class="education-item">
           <div class="edu-header">
-            <h3>Bachelor of Science in Computer Science and Information Technology (BSCCSIT)</h3>
-            <span class="edu-year">2019 - 2023</span>
+            <h3>BSc. Computer Science and Information Technology (BSc.CSIT)</h3>
+            <span class="edu-year">2019 &ndash; 2023</span>
           </div>
           <p class="edu-institution">Tribhuwan University</p>
-          <p class="edu-details">Comprehensive foundation in computer science, programming, database systems, and software engineering</p>
-        </div>
-      </div>
-
-      <!-- SKILLS -->
-      <div class="resume-card">
-        <h2 class="section-title">Core Skills</h2>
-        <div class="skills-list">
-          <span class="skill-tag">Java</span>
-          <span class="skill-tag">JSF (JavaServer Faces)</span>
-          <span class="skill-tag">Spring Boot</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Django</span>
-          <span class="skill-tag">MySQL</span>
-          <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">GitHub Actions</span>
-          <span class="skill-tag">Linux</span>
-          <span class="skill-tag">cPanel</span>
-          <span class="skill-tag">REST APIs</span>
-          <span class="skill-tag">Git</span>
-        </div>
-      </div>
-
-      <!-- CERTIFICATIONS -->
-      <!-- <div class="resume-card">
-        <h2 class="section-title">Certifications</h2>
-        
-        <div class="certification-item">
-          <h3>Spring Framework Certification</h3>
-          <p class="cert-issuer">Issued by: Spring.io | Year: 2024</p>
-        </div>
-
-        <div class="certification-item">
-          <h3>Docker Certified Associate</h3>
-          <p class="cert-issuer">Issued by: Docker | Year: 2023</p>
-        </div>
-
-        <div class="certification-item">
-          <h3>AWS Solutions Architect Associate</h3>
-          <p class="cert-issuer">Issued by: Amazon Web Services | Year: 2023</p>
+          <p class="edu-details">Foundation in programming, database systems, networks and software engineering</p>
         </div>
       </div>
 
       <div class="resume-footer">
-        <a href="index.html" class="btn primary">← Back to Portfolio</a>
+        <a href="index.html" class="btn secondary">&larr; Back to Portfolio</a>
       </div>
-    </div> -->
+    </div>
   </section>
 
   <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Nikson Shrestha</p>
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <p class="footer-name">Nikson Shrestha</p>
+        <p class="footer-role">Java &amp; Python Backend Developer &middot; Lalitpur, Nepal</p>
+      </div>
+
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="footer-social">
+        <a href="https://github.com/Nikson1122" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/nikson-shrestha-a39387213" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:sthanikson2000@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="container footer-base">
+      <p>&copy; <span id="year"></span> Nikson Shrestha. Built from scratch with HTML, CSS and JavaScript.</p>
     </div>
   </footer>
 
+  <script src="scripts.js"></script>
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("downloadPdf").addEventListener("click", () => window.print());
   </script>
 </body>
 </html>

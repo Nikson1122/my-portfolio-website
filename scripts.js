@@ -1,3 +1,8 @@
+function readingTime(html) {
+  const words = String(html || "").replace(/<[^>]*>/g, " ").trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Mobile menu toggle
   const menuBtn = document.getElementById("menuBtn");
@@ -17,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const year = document.getElementById("year");
-  year.textContent = new Date().getFullYear();
+  if (year) year.textContent = new Date().getFullYear();
 
   const cmd1 = document.getElementById("cmd1");
   const title = document.getElementById("title");
@@ -27,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const about = document.getElementById("about");
 
   const heroButtons = document.getElementById("heroButtons");
-  heroButtons.style.display = "none";
+  if (heroButtons) heroButtons.style.display = "none";
 
   const data = {
     cmd1: "whoami",
@@ -61,42 +66,130 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function run() {
-    await type(cmd1, data.cmd1, 50);
-    await sleep(250);
-
-    title.textContent = data.title;
-    await sleep(250);
-
-    await type(cmd2, data.cmd2, 50);
-    await sleep(250);
-
-    mission.innerHTML = data.mission + "<span class='cursor'></span>";
-    await sleep(500);
-
     await type(cmd3, data.cmd3, 50);
     await sleep(250);
 
     await type(about, data.about, 12);
 
-    heroButtons.style.display = "flex";
+    if (heroButtons) heroButtons.style.display = "flex";
   }
 
-  run();
+  if (cmd3 && about) run();
 
   // Render blog cards dynamically
   const blogsGrid = document.getElementById("blogsGrid");
-  if (blogsGrid && typeof blogs !== 'undefined') {
-    blogs.forEach(blog => {
-      const blogCard = document.createElement("a");
-      blogCard.href = `blog.html?id=${blog.id}`;
-      blogCard.className = "blog-card";
-      blogCard.innerHTML = `
-        <h3>${blog.title}</h3>
-        <p class="blog-date">${blog.date}</p>
-        <p>${blog.excerpt}</p>
-        <span class="read-more">Read More →</span>
-      `;
-      blogsGrid.appendChild(blogCard);
-    });
+  if (blogsGrid && typeof blogs !== "undefined") {
+    const sorted = [...blogs].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    blogsGrid.innerHTML = sorted
+      .map((blog, i) => {
+        const media = blog.image
+          ? `<img src="${blog.image}" alt="${blog.title}" loading="lazy">`
+          : `<span class="blog-card-icon"><i class="fa-solid ${blog.icon || "fa-pen-nib"}"></i></span>`;
+
+        return `
+          <a class="blog-card${i === 0 ? " featured" : ""}" href="blog.html?id=${blog.id}">
+            <div class="blog-card-media">
+              ${media}
+              ${i === 0 ? '<span class="blog-badge">Latest</span>' : ""}
+            </div>
+
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-cat">${blog.category || "Article"}</span>
+                <span class="blog-dot">&middot;</span>
+                <span>${blog.date}</span>
+                <span class="blog-dot">&middot;</span>
+                <span>${readingTime(blog.content)} min read</span>
+              </div>
+
+              <h3>${blog.title}</h3>
+              <p>${blog.excerpt}</p>
+              <span class="read-more">Read article <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>`;
+      })
+      .join("");
   }
 });
+
+/* ---------- INTERACTION POLISH ---------- */
+(() => {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  /* 1. Cursor glow that trails the pointer */
+  if (finePointer && !reduced) {
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    document.body.appendChild(glow);
+
+    let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+    let cx = tx, cy = ty, raf = null;
+
+    const render = () => {
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      glow.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      raf = Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4
+        ? requestAnimationFrame(render)
+        : null;
+    };
+
+    window.addEventListener("pointermove", (e) => {
+      tx = e.clientX;
+      ty = e.clientY;
+      glow.classList.add("visible");
+      if (!raf) raf = requestAnimationFrame(render);
+    }, { passive: true });
+
+    document.addEventListener("pointerleave", () => glow.classList.remove("visible"));
+  }
+
+  /* 2. Spotlight that follows the pointer inside each card */
+  const SPOTLIT = ".work-card, .skill-group, .cap-card, .project-card, .blog-card, .resume-card, .contact-info-card, .contact-form-card, .skill-pill";
+
+  if (finePointer && !reduced) {
+    document.querySelectorAll(SPOTLIT).forEach((card) => {
+      card.classList.add("spotlight");
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }, { passive: true });
+    });
+  }
+
+  /* 3. Reveal sections and cards as they scroll into view */
+  const revealTargets = document.querySelectorAll(
+    ".section-head, .work-card, .blog-hero, .edu-strip, .skill-group, .cap-card, .tl-item, .cta-band, .project-card, .blog-card, .resume-card, .resume-top, .contact-info-card, .contact-form-card, .skills-grid"
+  );
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    revealTargets.forEach((el) => el.classList.add("revealed"));
+  } else {
+    revealTargets.forEach((el, i) => {
+      el.classList.add("reveal");
+      el.style.setProperty("--reveal-delay", `${Math.min(i % 4, 3) * 70}ms`);
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+
+    revealTargets.forEach((el) => io.observe(el));
+  }
+
+  /* 4. Shrink the navbar once the page is scrolled */
+  const navbar = document.querySelector(".navbar");
+  if (navbar) {
+    const onScroll = () => navbar.classList.toggle("scrolled", window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+})();

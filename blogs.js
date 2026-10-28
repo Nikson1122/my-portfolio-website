@@ -4,6 +4,8 @@ const blogs = [
     id: 1,
     title: "Nepal Disaster Resilience Foundation - Building Resilience Through Information",
     date: "January 16, 2026",
+    category: "Case Study",
+    icon: "fa-shield-heart",
     excerpt: "A comprehensive platform dedicated to strengthening disaster risk reduction and resilience in Nepal through awareness, training, research, innovation, partnerships, and evidence-based advocacy.",
     image: "https://ndrfnepal.org/static/app/images/homendrf.jpg",
     content: `
@@ -57,8 +59,10 @@ const blogs = [
     id: 2,
     title: "Gothalo - Construction Management System",
     date: "January 16, 2026",
+    category: "Case Study",
+    icon: "fa-helmet-safety",
     excerpt: "A comprehensive platform for construction management featuring daily work reports, inventory tracking, and labor attendance management using Django.",
-    image: "http://100.29.204.101/static/images/laborreport.png",
+    image: "",
     content: `
       <p>
         Gothalo is a modern construction management system designed to streamline and simplify daily reporting, inventory management, and labor tracking on construction sites. This application bridges the gap between field operations and management, ensuring transparency and efficiency across all construction projects.
@@ -107,8 +111,10 @@ const blogs = [
     id: 3,
     title: "Java Spring Boot Best Practices",
     date: "January 15, 2026",
+    category: "Java",
+    icon: "fa-leaf",
     excerpt: "Learn best practices for building scalable Spring Boot applications with proper architecture and patterns.",
-    image: "https://via.placeholder.com/400x250?text=Spring+Boot",
+    image: "",
     content: `
       <p>
         Spring Boot has revolutionized the way we build Java applications. In this article, I'll share some best practices I've learned while working with Spring Boot in production environments.
@@ -154,8 +160,10 @@ const blogs = [
     id: 4,
     title: "Docker for Backend Developers",
     date: "January 10, 2026",
+    category: "DevOps",
+    icon: "fa-docker",
     excerpt: "A comprehensive guide to containerizing your backend applications with Docker and best practices for production deployment.",
-    image: "https://via.placeholder.com/400x250?text=Docker",
+    image: "",
     content: `
       <p>
         Docker has become an essential tool for backend developers. It ensures consistency across development, testing, and production environments. Let me walk you through the fundamentals and best practices.
@@ -200,8 +208,10 @@ const blogs = [
     id: 5,
     title: "Database Optimization Techniques",
     date: "January 5, 2026",
+    category: "Databases",
+    icon: "fa-database",
     excerpt: "Discover key strategies to optimize your database queries and improve application performance significantly.",
-    image: "https://via.placeholder.com/400x250?text=Database",
+    image: "",
     content: `
       <p>
         Database performance is crucial for any application. Slow queries can bottleneck your entire system. Let's explore effective optimization techniques.
@@ -248,8 +258,10 @@ const blogs = [
     id: 6,
     title: "Django Best Practices for Scalable Web Applications",
     date: "January 17, 2026",
+    category: "Python",
+    icon: "fa-python",
     excerpt: "Master Django development with practical tips for building scalable, maintainable web applications using Python and PostgreSQL.",
-    image: "https://via.placeholder.com/400x250?text=Django",
+    image: "",
     content: `
       <p>
         Django is one of the most powerful Python web frameworks available. Over the years of working with Django in production environments, I've learned several best practices that make applications more maintainable, scalable, and secure. Let me share what I've discovered.

@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nikson Shrestha | Portfolio</title>
+  <title>Nikson Shrestha | Java & Python Backend Developer</title>
+  <meta name="description" content="Backend developer in Kathmandu, Nepal building REST APIs, payment integrations and database-driven systems with Java, Spring Boot, JSF, Python and Django." />
+  <meta name="author" content="Nikson Shrestha" />
+  <link rel="canonical" href="https://niksonshrestha.netlify.app/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nikson Shrestha | Java & Python Backend Developer" />
+  <meta property="og:description" content="Backend developer in Kathmandu, Nepal building REST APIs, payment integrations and database-driven systems with Java, Spring Boot, JSF, Python and Django." />
+  <meta property="og:url" content="https://niksonshrestha.netlify.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070a14'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='30' font-weight='bold' text-anchor='middle' fill='%230ea5e9'%3ENS%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -12,288 +23,387 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container nav-wrap">
-      <a class="logo" href="#home">Nikson<span>Shrestha</span></a>
+      <a class="logo" href="index.html">Nikson<span>Shrestha</span></a>
 
       <nav class="nav-links" id="navLinks">
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#blogs">Blog</a>
+        <a href="index.html" class="active">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="blogs.html">Blog</a>
         <a href="resume.html">Resume</a>
-        <a href="#contact">Contact</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
       <button class="menu-btn" id="menuBtn">☰</button>
     </div>
   </header>
 
-  <!-- HERO TERMINAL -->
+  <!-- HERO -->
   <section class="hero" id="home">
-    <div class="container">
+    <div class="container hero-grid">
 
-      <div class="terminal-box">
-        <div class="term-line">
-          <span class="term-prompt">$</span>
-          <span class="term-cmd" id="cmd1"></span>
+      <div class="hero-main">
+        <span class="availability"><span class="dot"></span> Open to full-stack developer roles</span>
+
+        <h1 class="hero-name">Nikson Shrestha</h1>
+        <p class="hero-role">Java &amp; Python Backend Developer</p>
+
+        <p class="hero-pitch">
+          I build the backend systems behind products people use every day &mdash; REST APIs, payment
+          gateway integrations and database-driven applications in <strong>Java (Spring Boot, JSF)</strong>
+          and <strong>Python (Django)</strong>, deployed with Docker, GitHub Actions and Linux hosting.
+        </p>
+
+        <div class="terminal-box">
+          <div class="term-line">
+            <span class="term-prompt">$</span>
+            <span class="term-cmd" id="cmd3"></span>
+          </div>
+          <p class="term-about" id="about"></p>
         </div>
-
-        <h1 class="term-title" id="title"></h1>
-
-        <div class="term-line">
-          <span class="term-prompt">$</span>
-          <span class="term-cmd" id="cmd2"></span>
-        </div>
-
-        <p class="term-mission" id="mission"></p>
-
-        <div class="term-line">
-          <span class="term-prompt">$</span>
-          <span class="term-cmd" id="cmd3"></span>
-        </div>
-
-        <p class="term-about" id="about"></p>
 
         <div class="hero-buttons" id="heroButtons">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn secondary" href="#contact">Contact Me</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section" id="skills">
-    <div class="container">
-      <div class="section-head">
-        <h2>Skills & Tools</h2>
-        <p>Stacks and tools I use in real projects</p>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
-          <span>Java</span>
+          <a class="btn primary" href="resume.html"><i class="fas fa-file-lines"></i> View Resume</a>
+          <a class="btn secondary" href="projects.html">View Projects</a>
+          <a class="btn ghost" href="mailto:sthanikson2000@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
         </div>
 
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot">
-          <span>Spring Boot</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
-          <span>Python</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/django.svg" alt="Django">
-          <span>Django</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
-          <span>MySQL</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
-          <span>PostgreSQL</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
-          <span>Docker</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Actions">
-          <span>GitHub Actions</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux Server">
-          <span>Linux Server</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cpanel.svg" alt="cPanel">
-          <span>cPanel Hosting</span>
-        </div>
-
-        <div class="skill-pill">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" alt="AI/ML">
-          <span>Basic AI/ML</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS WITH YOUR IMAGES -->
-  <section class="section section-alt" id="projects">
-    <div class="container">
-      <div class="section-head">
-        <h2>Projects</h2>
-        <p>My featured work (replace links + images)</p>
-      </div>
-
-      <div class="projects-grid">
-
-        <div class="project-card">
-          <img class="project-img" src="https://ndrfnepal.org/static/app/images/homendrf.jpg" alt="Nepal Disaster Resilience Foundation">
-          <h3>Nepal Disaster Resilience Foundation (NDRF)</h3>
-          <p>A platform dedicated to strengthening disaster risk reduction and resilience in Nepal through awareness, training, research, and evidence-based advocacy.</p>
-          <p class="tech-stack"><strong>Tech Stack:</strong> Django, Python, PostgreSQL</p>
-          <div class="links">
-            <a href="https://ndrfnepal.org/" target="_blank">Live</a>
-            <a href="https://www.facebook.com/profile.php?id=61584238079194" target="_blank">Facebook</a>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>3+ yrs</strong>
+            <span>Professional experience</span>
+          </div>
+          <div class="stat">
+            <strong>3</strong>
+            <span>Production systems shipped</span>
+          </div>
+          <div class="stat">
+            <strong>500K+</strong>
+            <span>App users served by my APIs</span>
           </div>
         </div>
+      </div>
 
-        <div class="project-card">
-          <img class="project-img" src="images/home.jpeg" alt="Gothalo Construction Management">
-          <h3>Gothalo - Construction Management System</h3>
-          <p>A comprehensive solution for daily work reports, inventory management, and labor attendance tracking in construction projects.</p>
-          <p class="tech-stack"><strong>Tech Stack:</strong> Django, Python, PostgreSQL</p>
-          <div class="links">
-            <a href="http://100.29.204.101/" target="_blank">Live</a>
-            <a href="https://www.instagram.com/gothalo_insta/" target="_blank">Instagram</a>
-          </div>
+      <aside class="hero-aside">
+        <div class="portrait">
+          <img src="images/n.jpg" alt="Nikson Shrestha" />
         </div>
 
-        <div class="project-card">
-          <img class="project-img" src="images/project3.png" alt="Project 3">
-          <h3>Project 3 Title</h3>
-          <p>Short description of your project.</p>
-          <div class="links">
-            <a href="#" target="_blank">GitHub</a>
-            <a href="#" target="_blank">Live</a>
-          </div>
+        <ul class="hero-facts">
+          <li><i class="fas fa-building"></i><span>Diyalo Technology &mdash; BusSewa</span></li>
+          <li><i class="fas fa-location-dot"></i><span>Lalitpur, Nepal</span></li>
+          <li><i class="fas fa-graduation-cap"></i><span>BSc.CSIT &middot; MBS in progress</span></li>
+        </ul>
+
+        <div class="hero-social">
+          <a href="https://github.com/Nikson1122" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/nikson-shrestha-a39387213" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:sthanikson2000@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- WHAT I DO -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>What I Do</h2>
+        <p>Where I add value on an engineering team</p>
+      </div>
+
+      <div class="cap-grid">
+        <div class="cap-card">
+          <i class="fas fa-plug-circle-bolt"></i>
+          <h3>API Development</h3>
+          <p>Design and build REST APIs that web and mobile clients depend on &mdash; versioned endpoints, clear contracts, validation, authentication and predictable error handling.</p>
         </div>
 
+        <div class="cap-card">
+          <i class="fas fa-credit-card"></i>
+          <h3>Payment Integration</h3>
+          <p>Integrate payment gateways end to end: initiation, verification callbacks, idempotent transactions, reconciliation, failed-payment recovery and refunds.</p>
+        </div>
+
+        <div class="cap-card">
+          <i class="fas fa-database"></i>
+          <h3>Database Engineering</h3>
+          <p>Model relational schemas for real workloads, write efficient queries, manage migrations safely and tune performance as data and traffic grow.</p>
+        </div>
+
+        <div class="cap-card">
+          <i class="fas fa-gears"></i>
+          <h3>Deployment &amp; DevOps</h3>
+          <p>Ship to production with Docker and GitHub Actions pipelines, run and maintain applications on Linux servers, and keep deployments repeatable.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY / IMAGES -->
-  <section class="section section-alt" id="gallery">
+  <!-- FEATURED WORK -->
+  <section class="section" id="featured">
     <div class="container">
       <div class="section-head">
-        <h2>Gallery</h2>
-        <p>More of my work and experiences</p>
+        <h2>Featured Work</h2>
+        <p>Production platforms I build and maintain, from national ticketing to construction operations</p>
       </div>
 
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="images/n.jpg" alt="Gallery 1">
-        </div>
+      <div class="work-list">
 
-        <div class="gallery-item">
-          <img src="images/gallery2.png" alt="Gallery 2">
-        </div>
+        <article class="work-card">
+          <div class="work-media work-media-icon">
+            <i class="fas fa-bus"></i>
+            <span class="work-media-label">BusSewa</span>
+          </div>
 
-        <div class="gallery-item">
-          <img src="images/gallery3.png" alt="Gallery 3">
-        </div>
+          <div class="work-body">
+            <div class="work-top">
+              <span class="work-role">Java Backend Developer &middot; June 2025 &ndash; Present &middot; Diyalo Technology</span>
+              <h3>BusSewa &mdash; Online Bus Ticketing Platform</h3>
+              <p class="work-tagline">Nepal&rsquo;s fastest-growing online ticket booking platform.</p>
+            </div>
 
-        <div class="gallery-item">
-          <img src="images/gallery4.png" alt="Gallery 4">
-        </div>
-      </div>
-    </div>
-  </section>
+            <p class="work-summary">
+              BusSewa lets passengers across Nepal search routes, pick seats and pay online, issuing an instant
+              digital ticket. The platform spans <strong>400+ routes across 65+ districts</strong>, works with
+              <strong>500+ bus partners</strong> and <strong>1,700+ daily buses</strong>, and serves mobile apps with
+              <strong>500K+ Android downloads</strong>. I work on the backend that powers all of it.
+            </p>
 
-  <!-- BLOGS -->
-  <section class="section" id="blogs">
-    <div class="container">
-      <div class="section-head">
-        <h2>Blog</h2>
-        <p>Latest articles and technical insights</p>
-      </div>
+            <ul class="work-points">
+              <li><strong>Backend services &amp; REST APIs</strong> consumed by the website and the Android and iOS apps &mdash; search, booking, ticketing, cancellation and operator endpoints.</li>
+              <li><strong>Payment gateway integrations</strong> across eSewa, Khalti, IME Pay, NCHL connectIPS and MyPay &mdash; payment initiation, verification callbacks, idempotent transaction handling, failure recovery and refunds on cancellation.</li>
+              <li><strong>Booking &amp; seat-inventory engine</strong> with seat locking and transactional integrity, so concurrent users cannot double-book the same seat on high-demand routes.</li>
+              <li><strong>Route, schedule and fleet modules</strong> letting operators manage buses, layouts, fares and departures against a live inventory of 55k+ seats a day.</li>
+              <li><strong>Promo codes and flash-sale logic</strong>, including validation rules, usage limits and discount application at checkout.</li>
+              <li><strong>Enterprise web interfaces in JSF</strong> for internal and operator-facing administration.</li>
+              <li><strong>Database design and query optimisation</strong> for a high-read, booking-heavy workload, plus notification flows for ticket confirmation.</li>
+            </ul>
 
-      <div class="blogs-grid" id="blogsGrid">
-        <!-- Blog cards will be generated here dynamically -->
+            <div class="work-tech">
+              <span>Java</span><span>JSF</span><span>Spring Boot</span><span>REST APIs</span>
+              <span>Payment Gateways</span><span>PostgreSQL</span><span>Linux</span>
+            </div>
+
+            <div class="work-links">
+              <a class="btn primary" href="https://bussewa.com.np/" target="_blank" rel="noopener">Visit Live Platform</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-media">
+            <img src="https://ndrfnepal.org/static/app/images/homendrf.jpg" alt="Nepal Disaster Resilience Foundation website">
+          </div>
+
+          <div class="work-body">
+            <div class="work-top">
+              <span class="work-role">Full-Stack Developer &middot; June 2024 &ndash; Present</span>
+              <h3>Nepal Disaster Resilience Foundation</h3>
+              <p class="work-tagline">&ldquo;Building resilience through information and action.&rdquo;</p>
+            </div>
+
+            <p class="work-summary">
+              The digital platform of a national non-profit working to make Nepal disaster-resilient. I built
+              the site from concept to production and continue to maintain it &mdash; it is the organisation&rsquo;s
+              primary channel for awareness, training programmes, research and evidence-based advocacy.
+            </p>
+
+            <ul class="work-points">
+              <li><strong>Owned the full lifecycle</strong> &mdash; requirements, Django application, PostgreSQL schema design, deployment and ongoing maintenance.</li>
+              <li><strong>Member portal</strong> with authenticated login for institutions, professionals and partners.</li>
+              <li><strong>Content modules</strong> for events, articles, blogs and FAQs, so staff publish without developer help.</li>
+              <li><strong>Donation &amp; newsletter flows</strong> supporting fundraising and subscriber outreach.</li>
+              <li><strong>Public-service content</strong> on earthquake readiness, flood mitigation and climate adaptation, plus a 24/7 helpline.</li>
+            </ul>
+
+            <div class="work-tech">
+              <span>Django</span><span>Python</span><span>PostgreSQL</span><span>JavaScript</span><span>Linux</span>
+            </div>
+
+            <div class="work-links">
+              <a class="btn primary" href="https://ndrfnepal.org/" target="_blank" rel="noopener">Visit Live Site</a>
+              <a class="btn secondary" href="blog.html?id=1">Read Case Study</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-media">
+            <img src="images/home.jpeg" alt="Gothalo construction management system">
+          </div>
+
+          <div class="work-body">
+            <div class="work-top">
+              <span class="work-role">Full-Stack Developer</span>
+              <h3>Gothalo &mdash; Construction Management System</h3>
+              <p class="work-tagline">Replacing paper site records with one source of truth.</p>
+            </div>
+
+            <p class="work-summary">
+              A management system for construction firms that brings daily site reporting, material stock and
+              labour attendance into a single Django application, so site engineers and head office work from
+              the same live data instead of paper registers and spreadsheets.
+            </p>
+
+            <ul class="work-points">
+              <li><strong>Daily work reports</strong> filed from site, giving management same-day visibility on progress.</li>
+              <li><strong>Inventory tracking</strong> for material issue and consumption against each project.</li>
+              <li><strong>Labour attendance</strong> records that feed directly into wage and manpower reporting.</li>
+              <li><strong>Role-based access</strong> separating site staff, supervisors and administrators.</li>
+              <li><strong>Deployed to a live cloud server</strong> and running in production.</li>
+            </ul>
+
+            <div class="work-tech">
+              <span>Django</span><span>Python</span><span>PostgreSQL</span><span>Docker</span>
+            </div>
+
+            <div class="work-links">
+              <a class="btn primary" href="http://100.29.204.101/" target="_blank" rel="noopener">View Live Demo</a>
+              <a class="btn secondary" href="blog.html?id=2">Read Case Study</a>
+            </div>
+          </div>
+        </article>
       </div>
 
       <div class="section-bottom">
-        <p class="about-description">
-          I am a skilled Java and Python backend developer with expertise in building scalable web systems and robust APIs. With a strong foundation in both Java Spring Boot and Python Django frameworks, I specialize in designing database-driven applications, implementing CI/CD pipelines, and deploying production systems using modern DevOps tools like Docker and GitHub Actions. Currently serving as a full-stack developer, I bring hands-on experience in microservices architecture, RESTful API design, cloud deployment, and infrastructure automation. My expertise spans the full application stack, from backend development to database optimization and DevOps practices. Additionally, I am pursuing a Master of Business Studies (MBS) degree at NCC College, Tribhuwan University, which complements my technical expertise with business acumen and strategic thinking.
-        </p>
-        <a href="resume.html" class="btn primary">Learn More</a>
+        <a href="projects.html" class="btn secondary">See all projects &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
     <div class="container">
       <div class="section-head">
-        <h2>Contact</h2>
-        <p>Get in touch with me</p>
+        <h2>Experience</h2>
+        <p>Where I have worked and what I was responsible for</p>
       </div>
 
-      <div class="contact-wrapper">
-        <!-- Contact Info Card -->
-        <div class="contact-info-card">
-          <div class="contact-info-header">
-            <i class="fas fa-envelope"></i>
-            <h3>Contact Info</h3>
-          </div>
-
-          <div class="contact-info-item">
-            <h4>Email:</h4>
-            <p><a href="mailto:sthanikson2000@gmail.com">sthanikson2000@gmail.com</a></p>
-          </div>
-
-          <div class="contact-info-item">
-            <h4>Location:</h4>
-            <p>Lalitpur, Nepal</p>
-          </div>
-
-          <div class="contact-info-item">
-            <h4>Socials:</h4>
-            <div class="social-links">
-              <a href="https://www.linkedin.com/in/nikson-shrestha-a39387213/" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="https://github.com/Nikson1122" target="_blank" title="GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="https://www.facebook.com/nishant.shrestha.5" target="_blank" title="Facebook">
-                <i class="fab fa-facebook"></i>
-              </a>
-            </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-marker"></div>
+          <div class="tl-body">
+            <span class="tl-date">June 2025 &mdash; Present</span>
+            <h3>Java Backend Developer</h3>
+            <p class="tl-org">Diyalo Technology, New Baneshwor &middot; BusSewa</p>
+            <p class="tl-desc">Backend services, REST APIs and payment gateway integrations for Nepal&rsquo;s fastest-growing online bus ticketing platform, plus seat-inventory logic and JSF administration interfaces.</p>
           </div>
         </div>
 
-        <!-- Contact Form -->
-        <div class="contact-form-card">
-          <h3>Send me a Message</h3>
-          <form class="contact-form" name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact" />
-
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button class="btn primary" type="submit">Send Message</button>
-</form>
-
+        <div class="tl-item">
+          <div class="tl-marker"></div>
+          <div class="tl-body">
+            <span class="tl-date">June 2024 &mdash; Present</span>
+            <h3>Full-Stack Web Developer <span class="tl-type">Part-time</span></h3>
+            <p class="tl-org">Nepal Disaster Resilience Foundation (NDRF)</p>
+            <p class="tl-desc">Built and maintain the organisation&rsquo;s Django platform end to end &mdash; member portal, content modules, donation and newsletter flows &mdash; from concept to production.</p>
+          </div>
         </div>
+
+        <div class="tl-item">
+          <div class="tl-marker"></div>
+          <div class="tl-body">
+            <span class="tl-date">January 2024 &mdash; June 2024</span>
+            <h3>Django Developer <span class="tl-type">Internship</span></h3>
+            <p class="tl-org">IT Nepal Solution</p>
+            <p class="tl-desc">Developed Django applications and RESTful APIs for client projects, worked with PostgreSQL and MySQL, and adopted team code-review practices.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="edu-strip">
+        <h3 class="edu-strip-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+
+        <div class="edu-strip-grid">
+          <div class="edu-chip">
+            <span class="edu-chip-year">2025 &ndash; Present</span>
+            <p class="edu-chip-degree">Master of Business Studies (MBS) <span class="edu-ongoing">Ongoing</span></p>
+            <p class="edu-chip-school">NCC College, Tribhuvan University</p>
+            <p class="edu-chip-note">
+              I took the MBS to understand the business side of the systems I build &mdash; how
+              requirements, cost and users drive technical decisions. It helps me ask better questions
+              about <em>why</em> a feature matters, not just how to ship it.
+            </p>
+          </div>
+
+          <div class="edu-chip">
+            <span class="edu-chip-year">2019 &ndash; 2023</span>
+            <p class="edu-chip-degree">BSc. Computer Science &amp; Information Technology</p>
+            <p class="edu-chip-school">Tribhuvan University</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-bottom">
+        <a href="resume.html" class="btn primary"><i class="fas fa-file-lines"></i> View Full Resume</a>
       </div>
     </div>
   </section>
-        </form>
+
+  <!-- CTA -->
+  <section class="section" id="cta">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>Looking for a full-stack developer?</h2>
+          <p>I am open to full-stack and backend roles. Happy to talk through what I have built and how I can help your team.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn primary" href="mailto:sthanikson2000@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
+          <a class="btn secondary" href="contact.html">Contact Page</a>
+        </div>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Nikson Shrestha</p>
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <p class="footer-name">Nikson Shrestha</p>
+        <p class="footer-role">Java &amp; Python Backend Developer &middot; Lalitpur, Nepal</p>
+      </div>
+
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="footer-social">
+        <a href="https://github.com/Nikson1122" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/nikson-shrestha-a39387213" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:sthanikson2000@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="container footer-base">
+      <p>&copy; <span id="year"></span> Nikson Shrestha. Built from scratch with HTML, CSS and JavaScript.</p>
     </div>
   </footer>
 
   <script src="blogs.js"></script>
   <script src="scripts.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nikson Shrestha",
+    "jobTitle": "Java & Python Backend Developer",
+    "url": "https://niksonshrestha.netlify.app/",
+    "email": "mailto:sthanikson2000@gmail.com",
+    "image": "https://niksonshrestha.netlify.app/images/n.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lalitpur", "addressCountry": "NP" },
+    "worksFor": { "@type": "Organization", "name": "Diyalo Technology" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Tribhuvan University" },
+    "knowsAbout": ["Java", "Spring Boot", "JSF", "Python", "Django", "REST APIs", "PostgreSQL", "MySQL", "Docker", "CI/CD"],
+    "sameAs": [
+      "https://github.com/Nikson1122",
+      "https://www.linkedin.com/in/nikson-shrestha-a39387213"
+    ]
+  }
+  </script>
 </body>
 </html>
-
