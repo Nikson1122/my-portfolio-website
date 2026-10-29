@@ -105,16 +105,20 @@ body {
   .nav-links {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 100%;
     left: 0;
     right: 0;
-    background: rgba(5, 6, 11, 0.95);
+    background: rgba(5, 6, 11, 0.97);
     backdrop-filter: blur(14px);
     flex-direction: column;
-    gap: 12px;
-    padding: 20px;
+    gap: 10px;
+    padding: 16px;
     border-bottom: 1px solid var(--border);
-    z-index: 998;
+    box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.95);
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1001;
   }
 
   .nav-links.active {
@@ -123,12 +127,26 @@ body {
 
   .nav-links a {
     margin-left: 0;
-    padding: 10px 14px;
-    border-radius: 8px;
+    padding: 14px 16px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     color: var(--muted);
+  }
+
+  /* The animated underline would otherwise sit over the next link's tap area */
+  .nav-links a::after {
+    display: none;
+  }
+
+  .menu-btn {
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .nav-links a.active {
@@ -1613,6 +1631,75 @@ body {
   }
 }
 
+/* ===== AMBIENT STREAK LINES ===== */
+/* Three fixed hairlines with a light streak sweeping left -> right */
+.lines {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.line::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 15vw;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    #fff 75%,
+    #fff 100%
+  );
+  animation: streak 7s linear infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}
+
+.line:nth-child(1) {
+  top: 18%;
+}
+
+.line:nth-child(1)::after {
+  animation-delay: 1.5s;
+}
+
+.line:nth-child(2) {
+  top: 50%;
+}
+
+.line:nth-child(3) {
+  top: 79%;
+}
+
+.line:nth-child(3)::after {
+  animation-delay: 2.5s;
+}
+
+@keyframes streak {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
 /* ===== INTERACTION POLISH ===== */
 
 /* Cursor glow */
@@ -1641,7 +1728,6 @@ body {
 }
 
 /* Keep content above the glow */
-.navbar,
 .hero,
 .section,
 .resume-section,
@@ -1649,6 +1735,11 @@ body {
 .footer {
   position: relative;
   z-index: 1;
+}
+
+.navbar {
+  position: sticky;
+  z-index: 1000;
 }
 
 /* Pointer spotlight inside cards */
@@ -1680,9 +1771,10 @@ body {
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Drops in from above and overshoots slightly, so it settles instead of rising */
+  transform: translateY(-30px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
@@ -1914,7 +2006,8 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-glow {
+  .cursor-glow,
+  .lines {
     display: none;
   }
 

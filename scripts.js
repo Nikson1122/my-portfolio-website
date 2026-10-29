@@ -9,15 +9,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.getElementById("navLinks");
 
   if (menuBtn && navLinks) {
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+    const setMenu = (open) => {
+      navLinks.classList.toggle("active", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+    };
+
+    menuBtn.setAttribute("aria-controls", "navLinks");
+    menuBtn.setAttribute("aria-label", "Toggle navigation menu");
+    setMenu(false);
+
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setMenu(!navLinks.classList.contains("active"));
     });
 
     // Close menu when a link is clicked
     navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-      });
+      link.addEventListener("click", () => setMenu(false));
+    });
+
+    // Close on a tap outside, on Escape, or when widening past the mobile layout
+    document.addEventListener("click", (e) => {
+      if (!navLinks.classList.contains("active")) return;
+      if (!navLinks.contains(e.target) && e.target !== menuBtn) setMenu(false);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) setMenu(false);
     });
   }
 
