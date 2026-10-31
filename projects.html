@@ -134,9 +134,9 @@
           </div>
         </article>
 
-        <article class="work-card">
+        <article class="work-card" id="gothalo">
           <div class="work-media">
-            <img src="images/home.jpeg" alt="Gothalo construction management system">
+            <img src="images/home.png" alt="Gothalo construction management system">
           </div>
 
           <div class="work-body">
@@ -164,6 +164,57 @@
               <span>Django</span><span>Python</span><span>PostgreSQL</span><span>Docker</span>
             </div>
 
+            <div class="inv-showcase">
+              <h4 class="inv-title"><i class="fas fa-warehouse"></i> Inventory Module</h4>
+              <p class="inv-desc">
+                Real-time tracking of construction material stock, issue and consumption against each project &mdash;
+                so site engineers and head office always work from the same live inventory instead of paper registers.
+              </p>
+
+              <div class="inv-carousel" data-interval="3500">
+                <div class="inv-slide active"><img src="images/inventory/Screenshot%202026-10-31%20165957.png" alt="Gothalo inventory dashboard" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/inventory/Screenshot%202026-10-31%20170028.png" alt="Gothalo material stock view" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/inventory/Screenshot%202026-10-31%20170046.png" alt="Gothalo inventory records" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/inventory/Screenshot%202026-10-31%20170104.png" alt="Gothalo material issue entry" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/inventory/Screenshot%202026-10-31%20170142.png" alt="Gothalo inventory report" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/inventory/Screenshot%202026-10-31%20170302.png" alt="Gothalo stock summary" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/inventory/Screenshot%202026-10-31%20171526.png" alt="Gothalo inventory management screen" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/inventory/Screenshot%202026-10-31%20171539.png" alt="Gothalo material consumption report" loading="lazy"></div>
+              </div>
+
+              <div class="inv-dots" aria-hidden="true"></div>
+            </div>
+
+            <div class="inv-showcase">
+              <h4 class="inv-title"><i class="fas fa-clipboard-list"></i> Work Report Module</h4>
+              <p class="inv-desc">
+                Daily site summaries filed from the field &mdash; workforce, labour hours, materials used and
+                day cost rolled up per site, so management gets same-day visibility on progress.
+              </p>
+
+              <div class="inv-carousel" data-interval="3500">
+                <div class="inv-slide active"><img src="images/workreport/Screenshot%202026-10-31%20204316.png" alt="Gothalo daily site summary" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/workreport/Screenshot%202026-10-31%20204409.png" alt="Gothalo project site overview" loading="lazy"></div>
+                <div class="inv-slide"><img src="images/workreport/Screenshot%202026-10-31%20204516.png" alt="Gothalo site stock movements log" loading="lazy"></div>
+              </div>
+
+              <div class="inv-dots" aria-hidden="true"></div>
+            </div>
+
+            <div class="inv-showcase">
+              <h4 class="inv-title"><i class="fas fa-user-check"></i> Attendance Module</h4>
+              <p class="inv-desc">
+                Labour attendance recorded on site each day &mdash; check-in and check-out, hours, overtime and
+                supervisor sign-off feeding straight into wage and manpower reports.
+              </p>
+
+              <div class="inv-carousel" data-interval="3500">
+                <div class="inv-slide active"><img src="images/attendance/Screenshot%202026-10-31%20204740.png" alt="Gothalo daily attendance records" loading="lazy"></div>
+              </div>
+
+              <div class="inv-dots" aria-hidden="true"></div>
+            </div>
+
             <div class="work-links">
               <a class="btn primary" href="http://100.29.204.101/" target="_blank" rel="noopener">View Live Demo</a>
               <a class="btn secondary" href="blog.html?id=2">Read Case Study</a>
@@ -173,6 +224,15 @@
       </div>
     </div>
   </section>
+
+  <!-- INVENTORY IMAGE LIGHTBOX -->
+  <div class="inv-lightbox" id="invLightbox">
+    <button class="inv-lightbox-close" aria-label="Close image preview">&times;</button>
+    <button class="inv-lightbox-nav prev" id="invLightboxPrev" aria-label="Previous image">&#10094;</button>
+    <button class="inv-lightbox-nav next" id="invLightboxNext" aria-label="Next image">&#10095;</button>
+    <img src="" alt="Gothalo screenshot preview">
+    <span class="inv-lightbox-hint" id="invLightboxHint">Click to zoom &middot; &larr;/&rarr; to browse &middot; Esc to close</span>
+  </div>
 
   <footer class="footer">
     <div class="container footer-wrap">

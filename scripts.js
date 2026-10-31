@@ -214,4 +214,155 @@ document.addEventListener("DOMContentLoaded", () => {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
+
+  /* 5. Screenshot carousels + shared lightbox (Gothalo project card) */
+  const carouselCtl = new WeakMap();
+
+  const shotLightbox = (() => {
+    const lightbox = document.getElementById("invLightbox");
+    if (!lightbox) return null;
+
+    const lbImg = lightbox.querySelector("img");
+    const lbClose = lightbox.querySelector(".inv-lightbox-close");
+    const lbPrev = document.getElementById("invLightboxPrev");
+    const lbNext = document.getElementById("invLightboxNext");
+    const lbHint = document.getElementById("invLightboxHint");
+
+    let source = null;
+    let slides = [];
+    let lbIndex = 0;
+
+    function setLbImage(i) {
+      if (!slides.length) return;
+      lbIndex = (i + slides.length) % slides.length;
+      const img = slides[lbIndex].querySelector("img");
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || "";
+      lbImg.classList.remove("zoomed");
+      lbImg.style.transform = "";
+      lbImg.style.transformOrigin = "center";
+      if (lbHint) lbHint.textContent = `${lbIndex + 1} / ${slides.length} \u00B7 Click to zoom \u00B7 \u2190/\u2192 to browse \u00B7 Esc to close`;
+    }
+
+    function open(carousel) {
+      source = carousel;
+      slides = Array.from(carousel.querySelectorAll(".inv-slide"));
+      const activeImg = carousel.querySelector(".inv-slide.active img");
+      const i = activeImg ? slides.indexOf(activeImg.closest(".inv-slide")) : 0;
+      setLbImage(i < 0 ? 0 : i);
+      lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
+      const ctl = carouselCtl.get(carousel);
+      if (ctl) ctl.pause();
+    }
+
+    function close() {
+      lightbox.classList.remove("open");
+      lbImg.classList.remove("zoomed");
+      lbImg.style.transform = "";
+      document.body.style.overflow = "";
+      const ctl = source && carouselCtl.get(source);
+      if (ctl) ctl.resume();
+      source = null;
+    }
+
+    lbClose.addEventListener("click", close);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) close();
+    });
+
+    if (lbPrev) lbPrev.addEventListener("click", (e) => { e.stopPropagation(); setLbImage(lbIndex - 1); });
+    if (lbNext) lbNext.addEventListener("click", (e) => { e.stopPropagation(); setLbImage(lbIndex + 1); });
+
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") setLbImage(lbIndex - 1);
+      if (e.key === "ArrowRight") setLbImage(lbIndex + 1);
+    });
+
+    /* Click on image: zoom into the clicked spot / zoom back out */
+    lbImg.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      if (lbImg.classList.contains("zoomed")) {
+        lbImg.classList.remove("zoomed");
+        lbImg.style.transform = "";
+        return;
+      }
+
+      const rect = lbImg.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      lbImg.style.transformOrigin = `${x}% ${y}%`;
+      lbImg.style.transform = "scale(2.5)";
+      lbImg.classList.add("zoomed");
+    });
+
+    return { open };
+  })();
+
+  document.querySelectorAll(".inv-carousel").forEach((carousel) => {
+    const slides = carousel.querySelectorAll(".inv-slide");
+    if (!slides.length) return;
+
+    const interval = parseInt(carousel.dataset.interval, 10) || 3500;
+    const dotsWrap = carousel.parentElement.querySelector(".inv-dots");
+    const multi = slides.length > 1;
+    let index = 0;
+    let timer = null;
+
+    const dots = multi
+      ? Array.from(slides).map((_, i) => {
+          if (!dotsWrap) return null;
+          const dot = document.createElement("button");
+          dot.className = "inv-dot" + (i === 0 ? " active" : "");
+          dot.setAttribute("aria-label", `Show image ${i + 1}`);
+          dot.addEventListener("click", () => {
+            show(i);
+            restart();
+          });
+          dotsWrap.appendChild(dot);
+          return dot;
+        })
+      : [];
+
+    function show(i) {
+      slides[index].classList.remove("active");
+      if (dots[index]) dots[index].classList.remove("active");
+      index = i;
+      slides[index].classList.add("active");
+      if (dots[index]) dots[index].classList.add("active");
+    }
+
+    function next() {
+      show((index + 1) % slides.length);
+    }
+
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(next, interval);
+    }
+
+    if (multi && !reduced) restart();
+
+    carouselCtl.set(carousel, {
+      pause: () => clearInterval(timer),
+      resume: () => {
+        if (multi && !reduced) restart();
+      }
+    });
+
+    carousel.addEventListener("pointerenter", () => clearInterval(timer));
+    carousel.addEventListener("pointerleave", () => {
+      if (multi && !reduced) restart();
+    });
+
+    /* Click to open zoomable lightbox */
+    carousel.addEventListener("click", () => {
+      if (shotLightbox) shotLightbox.open(carousel);
+    });
+  });
 })();
