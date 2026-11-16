@@ -312,7 +312,7 @@ body {
   margin: 12px 0;
   font-weight: 700;
   text-align: justify;
-  hyphens: auto;
+  hyphens: manual;
   word-spacing: -0.05em;
 }
 
@@ -322,7 +322,7 @@ body {
   line-height: 1.7;
   text-align: justify;
   text-justify: inter-word;
-  hyphens: auto;
+  hyphens: manual;
   word-spacing: -0.05em;
   margin-bottom: 12px;
 }
@@ -567,7 +567,7 @@ body {
 
   .project-card p {
     text-align: justify;
-    hyphens: auto;
+    hyphens: manual;
   }
 }
 
@@ -650,7 +650,7 @@ body {
 
 .blogs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 30px;
   margin-top: 30px;
 }
@@ -903,7 +903,7 @@ body {
 
   .about-description {
     text-align: justify;
-    hyphens: auto;
+    hyphens: manual;
     word-spacing: -0.05em;
   }
 
@@ -3277,4 +3277,920 @@ button:focus-visible {
 
 .edu-strip-grid {
   align-items: start;
+}
+
+/* ============================================================
+   EXTRA SKILLS — home teaser card + video skills page
+   ============================================================ */
+
+/* --- Home teaser card --- */
+.extra-card {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 24px;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 26px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.extra-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(14, 165, 233, 0.12);
+}
+
+.extra-card-icon {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(14, 165, 233, 0.18));
+  border: 1px solid var(--border);
+  font-size: 46px;
+  color: var(--accent);
+}
+
+.extra-card-kind {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.extra-card-body h3 {
+  font-size: 21px;
+  margin: 0 0 10px;
+}
+
+.extra-card-body p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+.extra-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+
+.extra-card-tags span {
+  font-size: 11.5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+}
+
+.extra-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.extra-card:hover .extra-card-link i {
+  transform: translateX(4px);
+}
+
+.extra-card-link i {
+  transition: transform 0.25s ease;
+}
+
+@media (max-width: 700px) {
+  .extra-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .extra-card-icon {
+    aspect-ratio: auto;
+    padding: 22px 0;
+    font-size: 38px;
+  }
+}
+
+/* --- Extra skills page --- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 18px;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.extra-intro {
+  max-width: 820px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.vcap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+  gap: 18px;
+}
+
+.vcap-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.vcap-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.vcap-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 19px;
+  margin-bottom: 14px;
+}
+
+.vcap-card h3 {
+  font-size: 16.5px;
+  margin: 0 0 9px;
+}
+
+.vcap-card p {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+.vtool-group {
+  margin-bottom: 22px;
+}
+
+.vtool-label {
+  font-size: 11.5px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 11px;
+}
+
+.vtool-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.vtool-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.vtool-chip:hover {
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.vtool-chip i {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.vreel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: 20px;
+}
+
+.vreel-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.vreel-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.vreel-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.vreel-media iframe,
+.vreel-media video,
+.vreel-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  display: block;
+}
+
+.vreel-placeholder {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 9px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(14, 165, 233, 0.08));
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.vreel-placeholder i {
+  font-size: 32px;
+  color: var(--accent);
+}
+
+.vreel-placeholder span {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+}
+
+.vreel-body {
+  padding: 18px 20px 22px;
+}
+
+.vreel-kind {
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.vreel-body h3 {
+  font-size: 16.5px;
+  margin: 0 0 8px;
+}
+
+.vreel-body p {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+.vreel-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 13px;
+}
+
+.vreel-tech span {
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.vreel-note {
+  margin-top: 22px;
+  padding: 14px 16px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.vreel-note i {
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+.vreel-note code {
+  font-size: 11.5px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--accent);
+  word-break: break-word;
+}
+
+/* Vertical (9:16) video embeds — YouTube Shorts / Reels */
+.vreel-media.vreel-vertical {
+  aspect-ratio: 9 / 16;
+  max-height: 560px;
+  background: #000;
+}
+
+.vreel-media.vreel-vertical iframe {
+  object-fit: contain;
+}
+
+.vreel-grid {
+  align-items: start;
+}
+
+/* Channel block on the extra-skills page */
+.vchannel {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 20px;
+  align-items: start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 24px;
+}
+
+.vchannel-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  background: rgba(255, 0, 0, 0.12);
+  border: 1px solid var(--border);
+  color: #ff4444;
+  font-size: 34px;
+}
+
+.vchannel-kind {
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 7px;
+}
+
+.vchannel-body h3 {
+  font-size: 19px;
+  margin: 0 0 9px;
+}
+
+.vchannel-body p {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--muted);
+  margin: 0 0 15px;
+}
+
+@media (max-width: 700px) {
+  .vchannel {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Original Nepali title under a card heading */
+.vreel-native {
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin: -3px 0 9px !important;
+}
+
+/* ============================================================
+   JUSTIFIED BODY COPY
+   Applied to multi-line prose only — never to headings, chips,
+   dates, buttons or short one-line labels, where justification
+   produces visible word gaps instead of tidy edges.
+   ============================================================ */
+
+.hero-pitch,
+.about-description,
+.work-summary,
+.work-points li,
+.tl-desc,
+.exp-context,
+.exp-details li,
+.edu-chip-note,
+.resume-summary,
+.skill-group-note,
+.cap-card p,
+.inv-desc,
+.term-about,
+.project-card p,
+.blog-card p,
+.blog-lead,
+.blog-content p,
+.extra-intro,
+.extra-card-body p,
+.vcap-card p,
+.vreel-body p,
+.vchannel-body p {
+  text-align: justify;
+  text-justify: inter-word;
+  /* No auto-hyphenation: it breaks words across lines ("compo-sition"),
+     which reads worse than the uneven spacing it avoids. */
+  hyphens: manual;
+  -webkit-hyphens: manual;
+  text-wrap: pretty;
+}
+
+/* The original Nepali title line is short — justifying it would stretch it */
+.vreel-native {
+  text-align: left !important;
+  hyphens: manual;
+}
+
+/* Devanagari does not hyphenate; let it wrap naturally */
+[lang="ne"] {
+  hyphens: manual;
+  -webkit-hyphens: manual;
+}
+
+/* On narrow screens a justified line has too few words to space evenly,
+   so it opens up rivers of white space — fall back to a ragged right edge. */
+@media (max-width: 560px) {
+  .hero-pitch,
+  .about-description,
+  .work-summary,
+  .work-points li,
+  .tl-desc,
+  .exp-context,
+  .exp-details li,
+  .edu-chip-note,
+  .resume-summary,
+  .skill-group-note,
+  .cap-card p,
+  .inv-desc,
+  .term-about,
+  .project-card p,
+  .blog-card p,
+  .blog-lead,
+  .blog-content p,
+  .extra-intro,
+  .extra-card-body p,
+  .vcap-card p,
+  .vreel-body p,
+  .vchannel-body p {
+    text-align: left;
+    hyphens: manual;
+  }
+}
+
+/* Past Unseen channel logo */
+.vchannel {
+  grid-template-columns: 92px 1fr;
+}
+
+.vchannel-logo {
+  position: relative;
+  width: 92px;
+  height: 92px;
+}
+
+.vchannel-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.vchannel-badge {
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #0f0f0f;
+  border: 1px solid var(--border);
+  color: #ff0033;
+  font-size: 14px;
+}
+
+.vchannel-tagline {
+  font-size: 12px !important;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45) !important;
+  margin: -4px 0 11px !important;
+  text-align: left !important;
+}
+
+@media (max-width: 700px) {
+  .vchannel {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* View / reaction stats on a sample card */
+.vreel-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.vreel-stats i {
+  color: var(--accent);
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.vreel-ext {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.vreel-ext:hover {
+  text-decoration: underline;
+}
+
+.vchannel-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Second channel block */
+.vchannel-alt {
+  margin-top: 30px;
+}
+
+.vchannel-badge-fb {
+  color: #1877f2;
+}
+
+/* A single-card grid should not stretch to full width */
+.vreel-grid > .vreel-card:only-child {
+  max-width: 360px;
+}
+
+/* Other Facebook pages I handle */
+.vpages {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.vpages-title {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.vpages-intro {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 0 18px;
+  text-align: justify;
+}
+
+.vpages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 16px;
+}
+
+.vpage-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 15px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.vpage-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.vpage-card img {
+  width: 62px;
+  height: 62px;
+  border-radius: 11px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.vpage-body h4 {
+  font-size: 15.5px;
+  margin: 0 0 5px;
+}
+
+.vpage-kind {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: 0 0 5px;
+}
+
+.vpage-fb {
+  position: absolute;
+  top: 14px;
+  right: 15px;
+  color: #1877f2;
+  font-size: 15px;
+}
+
+/* ------------------------------------------------------------
+   Justification: wide columns only.
+   A narrow column has too few words per line to absorb the slack,
+   so justifying it opens uneven gaps. These stay left-aligned.
+   ------------------------------------------------------------ */
+.vcap-card p,
+.vreel-body p,
+.vreel-body .vreel-native,
+.extra-card-body p,
+.project-card p,
+.blog-card p,
+.cap-card p,
+.skill-group-note,
+.edu-chip-note,
+.vpages-intro,
+.work-points li,
+.exp-details li,
+.tl-desc {
+  text-align: left;
+  word-spacing: normal;
+}
+
+/* Wide, full-measure prose keeps the justified edge */
+.extra-intro,
+.hero-pitch,
+.about-description,
+.work-summary,
+.resume-summary,
+.blog-lead,
+.blog-content p,
+.vchannel-body p {
+  text-align: justify;
+  word-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------
+   No justified text.
+   This site is set in a monospace font: every glyph is the same
+   width, so justification can only stretch the spaces between
+   words, and it does so in visible, uneven jumps. A ragged right
+   edge with even word spacing reads far better than a straight
+   edge with gaps running down the paragraph.
+   ------------------------------------------------------------ */
+body,
+p,
+li,
+h1, h2, h3, h4,
+.project-card h3,
+.extra-intro,
+.hero-pitch,
+.about-description,
+.work-summary,
+.work-points li,
+.resume-summary,
+.blog-lead,
+.blog-content p,
+.vchannel-body p,
+.vcap-card p,
+.vreel-body p,
+.extra-card-body p,
+.project-card p,
+.blog-card p,
+.cap-card p,
+.skill-group-note,
+.edu-chip-note,
+.vpages-intro,
+.exp-context,
+.exp-details li,
+.inv-desc,
+.term-about,
+.tl-desc {
+  text-align: left;
+  text-justify: auto;
+  word-spacing: normal;
+}
+
+/* ============================================================
+   TYPOGRAPHY — proportional body text, monospace furniture
+   Headings, nav, logo, buttons, chips and code keep the
+   monospace look. Running prose switches to Inter, where the
+   browser can adjust letter fit as well as word spacing, so
+   justified text has even spacing and a straight right edge.
+   ============================================================ */
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+p,
+li,
+.extra-intro,
+.hero-pitch,
+.about-description,
+.work-summary,
+.work-points li,
+.resume-summary,
+.blog-lead,
+.blog-content p,
+.blog-content li,
+.vchannel-body p,
+.vcap-card p,
+.vreel-body p,
+.extra-card-body p,
+.project-card p,
+.blog-card p,
+.cap-card p,
+.skill-group-note,
+.edu-chip-note,
+.vpages-intro,
+.exp-context,
+.exp-details li,
+.inv-desc,
+.term-about,
+.tl-desc,
+.section-head p {
+  font-family: var(--font-sans);
+  letter-spacing: 0.1px;
+}
+
+/* Multi-line prose: justified now that the font can support it */
+.extra-intro,
+.hero-pitch,
+.about-description,
+.work-summary,
+.work-points li,
+.resume-summary,
+.blog-lead,
+.blog-content p,
+.vchannel-body p,
+.vcap-card p,
+.vreel-body p,
+.extra-card-body p,
+.project-card p,
+.blog-card p,
+.cap-card p,
+.vpages-intro,
+.exp-context,
+.exp-details li,
+.tl-desc {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: manual;
+  word-spacing: normal;
+}
+
+/* Short one-line text stays left: justifying it just stretches it */
+.vreel-native,
+.vchannel-tagline,
+.vpage-kind,
+.section-head p,
+.footer-role,
+.resume-actions-note {
+  text-align: left !important;
+}
+
+/* Phones: too few words per line to justify evenly */
+@media (max-width: 560px) {
+  .extra-intro,
+  .hero-pitch,
+  .about-description,
+  .work-summary,
+  .work-points li,
+  .resume-summary,
+  .blog-lead,
+  .blog-content p,
+  .vchannel-body p,
+  .vcap-card p,
+  .vreel-body p,
+  .extra-card-body p,
+  .project-card p,
+  .blog-card p,
+  .cap-card p,
+  .vpages-intro,
+  .exp-context,
+  .exp-details li,
+  .tl-desc {
+    text-align: left;
+  }
+}
+
+/* ------------------------------------------------------------
+   Extra-skills page — small screens
+   ------------------------------------------------------------ */
+@media (max-width: 560px) {
+  /* A 9:16 player at full width is taller than the phone screen,
+     so cap it and let the video letterbox rather than fill it. */
+  .vreel-media.vreel-vertical {
+    max-height: 70vh;
+  }
+
+  .vchannel,
+  .vpage-card {
+    padding: 16px;
+  }
+
+  .vchannel-logo,
+  .vchannel-logo img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .vchannel-links,
+  .vchannel-links .btn {
+    width: 100%;
+  }
+
+  .vchannel-links .btn {
+    justify-content: center;
+  }
+
+  .vtool-row {
+    gap: 8px;
+  }
+
+  .vtool-chip {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .vreel-stats {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .vpage-card {
+    grid-template-columns: 54px 1fr;
+    gap: 12px;
+  }
+
+  .vpage-card img {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+/* Nothing should push the page sideways on a phone */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.vreel-media iframe,
+.vreel-media video {
+  max-width: 100%;
 }
