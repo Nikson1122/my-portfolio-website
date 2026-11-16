@@ -4451,3 +4451,9 @@ body {
     display: none !important;
   }
 }
+
+/* Second platform badge on a channel logo */
+.vchannel-badge-2 {
+  right: auto;
+  left: -6px;
+}
