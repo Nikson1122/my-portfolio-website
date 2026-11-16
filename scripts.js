@@ -366,3 +366,182 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 })();
+
+/* ---- YouTube facade: click to load the real player ---- */
+(function () {
+  document.querySelectorAll(".yt-facade").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var id = btn.getAttribute("data-yt");
+      if (!id) return;
+      var frame = document.createElement("iframe");
+      frame.src =
+        "https://www.youtube.com/embed/" +
+        id +
+        "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      frame.title = btn.getAttribute("aria-label") || "YouTube video";
+      frame.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      frame.allowFullscreen = true;
+      btn.replaceWith(frame);
+    });
+  });
+})();
+
+/* ---- Reel sliders: auto-advancing carousel on desktop ---- */
+(function () {
+  var grids = document.querySelectorAll(".vreel-grid");
+  if (!grids.length) return;
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  grids.forEach(function (grid) {
+    if (grid.children.length < 2) return;
+
+    grid.classList.add("vslider");
+
+    var wrap = document.createElement("div");
+    wrap.className = "vslider-wrap";
+    grid.parentNode.insertBefore(wrap, grid);
+    wrap.appendChild(grid);
+
+    var prev = document.createElement("button");
+    prev.type = "button";
+    prev.className = "vslider-btn prev";
+    prev.setAttribute("aria-label", "Previous videos");
+    prev.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+    var next = document.createElement("button");
+    next.type = "button";
+    next.className = "vslider-btn next";
+    next.setAttribute("aria-label", "Next videos");
+    next.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+    var dots = document.createElement("div");
+    dots.className = "vslider-dots";
+
+    wrap.appendChild(prev);
+    wrap.appendChild(next);
+    wrap.appendChild(dots);
+
+    var timer = null;
+    var stopped = false;
+
+    function isSlider() {
+      return window.innerWidth >= 981 && grid.scrollWidth - grid.clientWidth > 8;
+    }
+
+    function step() {
+      var card = grid.querySelector(".vreel-card");
+      if (!card) return grid.clientWidth;
+      var gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function maxScroll() {
+      return Math.max(0, grid.scrollWidth - grid.clientWidth);
+    }
+
+    function pages() {
+      return Math.max(1, Math.round(maxScroll() / step()) + 1);
+    }
+
+    function current() {
+      return Math.min(pages() - 1, Math.round(grid.scrollLeft / step()));
+    }
+
+    function buildDots() {
+      dots.innerHTML = "";
+      var n = pages();
+      for (var i = 0; i < n; i++) {
+        (function (i) {
+          var d = document.createElement("button");
+          d.type = "button";
+          d.setAttribute("aria-label", "Go to slide " + (i + 1));
+          d.addEventListener("click", function () {
+            stop();
+            scrollToIndex(i);
+          });
+          dots.appendChild(d);
+        })(i);
+      }
+      sync();
+    }
+
+    function sync() {
+      var i = current();
+      Array.prototype.forEach.call(dots.children, function (d, k) {
+        d.classList.toggle("active", k === i);
+      });
+    }
+
+    function scrollToIndex(i) {
+      grid.scrollTo({
+        left: Math.min(i * step(), maxScroll()),
+        behavior: "smooth"
+      });
+    }
+
+    function go(dir) {
+      var n = pages();
+      var i = current() + dir;
+      if (i < 0) i = n - 1;
+      if (i > n - 1) i = 0;
+      scrollToIndex(i);
+    }
+
+    function start() {
+      if (stopped || reduced || !isSlider()) return;
+      clearInterval(timer);
+      timer = setInterval(function () {
+        go(1);
+      }, 6000);
+    }
+
+    function pause() {
+      clearInterval(timer);
+    }
+
+    function stop() {
+      stopped = true;
+      clearInterval(timer);
+    }
+
+    prev.addEventListener("click", function () {
+      stop();
+      go(-1);
+    });
+    next.addEventListener("click", function () {
+      stop();
+      go(1);
+    });
+
+    /* Playing a video ends the auto-advance for good */
+    grid.addEventListener("click", function (e) {
+      if (e.target.closest(".yt-facade") || e.target.closest("iframe")) stop();
+    });
+
+    wrap.addEventListener("pointerenter", pause);
+    wrap.addEventListener("pointerleave", start);
+    wrap.addEventListener("focusin", stop);
+    grid.addEventListener("scroll", sync, { passive: true });
+
+    function refresh() {
+      if (isSlider()) {
+        wrap.classList.add("is-slider");
+        buildDots();
+        start();
+      } else {
+        wrap.classList.remove("is-slider");
+        pause();
+      }
+    }
+
+    var rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt);
+      rt = setTimeout(refresh, 200);
+    });
+
+    refresh();
+  });
+})();

@@ -56,17 +56,32 @@
 
       <div class="section-head">
         <h2>Video Editing &amp; AI Video Generation</h2>
-        <p>A creative skill I keep outside my day job &mdash; storytelling with footage, sound and AI-generated visuals</p>
+        <p>A hobby I keep learning &mdash; storytelling with footage, sound and AI-generated visuals, built in my free time</p>
       </div>
 
       <p class="extra-intro">
-        Backend work is where I spend most of my hours, but video is where I learned pacing, composition and
-        how to hold someone&rsquo;s attention for thirty seconds. I run <strong>Past Unseen</strong>, a channel of
-        short-form Nepali history and heritage videos that I research, script, edit and publish myself &mdash;
-        I use AI video and voice tools to produce
-        visuals for stories where no footage exists. I also run <strong>Bijok Ramailo</strong>, a Nepali comedy
-        page, which is where I learned how fast a joke has to land on a feed.
+        Video editing is a hobby, not a job title. Nobody assigned it to me &mdash; I picked it up because I
+        wanted to understand what makes a video hold someone&rsquo;s attention, and I have been teaching myself
+        ever since, one video at a time, in the evenings and on weekends when the code is closed for the day.
       </p>
+      <p class="extra-intro">
+        What keeps me at it is the exploring. Every new tool, transition or AI model is something to pull apart
+        and test on a real video rather than read about, and the feed tells me honestly whether it worked. That
+        habit is the same one I bring to backend work: learn it by building something real with it.
+      </p>
+      <p class="extra-intro">
+        Two channels are where that practice lives. <strong>Past Unseen</strong> is short-form Nepali history and
+        heritage &mdash; I research, script, edit and publish each one myself, using AI video and voice tools to
+        create visuals for stories no camera ever recorded. <strong>Bijok Ramailo</strong> is the lighter side,
+        a Nepali comedy page that taught me how fast an idea has to land on a scrolling feed. Both are made in
+        free time, for the love of it, and both have made me a sharper storyteller than any tutorial could.
+      </p>
+
+      <div class="extra-cta-row">
+        <a class="btn primary" href="video-resume.html" target="_blank" rel="noopener">
+          <i class="fas fa-file-video"></i> View my video editing resume
+        </a>
+      </div>
     </div>
   </section>
 
@@ -182,9 +197,12 @@
         <!-- SAMPLE 1 -->
         <article class="vreel-card">
           <div class="vreel-media vreel-vertical">
-            <iframe src="https://www.youtube.com/embed/fs4G1tsoKlY" title="Why Deusi says Bali Rajale Pathako - Past Unseen"
-                    loading="lazy" allowfullscreen
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <button class="yt-facade" type="button" data-yt="fs4G1tsoKlY"
+                    aria-label="Play: Why Deusi says Bali Rajale Pathako">
+              <img src="https://i.ytimg.com/vi/fs4G1tsoKlY/hqdefault.jpg"
+                   alt="Why Deusi says Bali Rajale Pathako - Past Unseen" loading="lazy">
+              <span class="yt-play"><i class="fas fa-play"></i></span>
+            </button>
           </div>
           <div class="vreel-body">
             <span class="vreel-kind">Nepali history &middot; Tihar</span>
@@ -202,9 +220,12 @@
         <!-- SAMPLE 2 -->
         <article class="vreel-card">
           <div class="vreel-media vreel-vertical">
-            <iframe src="https://www.youtube.com/embed/Csh4ZQqjH4Q" title="The secret of Kasthamandap - Past Unseen"
-                    loading="lazy" allowfullscreen
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <button class="yt-facade" type="button" data-yt="Csh4ZQqjH4Q"
+                    aria-label="Play: Kasthamandap, carved from a single tree">
+              <img src="https://i.ytimg.com/vi/Csh4ZQqjH4Q/hqdefault.jpg"
+                   alt="The secret of Kasthamandap - Past Unseen" loading="lazy">
+              <span class="yt-play"><i class="fas fa-play"></i></span>
+            </button>
           </div>
           <div class="vreel-body">
             <span class="vreel-kind">Nepali heritage</span>
@@ -247,6 +268,28 @@
           </div>
         </article>
 
+        <!-- SAMPLE 4 -->
+        <article class="vreel-card vreel-featured">
+          <div class="vreel-media vreel-vertical">
+            <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F61570738914366%2Fvideos%2F1331266460079477%2F&amp;show_text=false&amp;width=360"
+                    title="Latest Past Unseen video on Facebook"
+                    loading="lazy" allowfullscreen scrolling="no"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+          <div class="vreel-body">
+            <span class="vreel-kind">Facebook</span>
+            <h3>Past Unseen on Facebook</h3>
+            <p>
+              Another episode from the channel &mdash; researched and scripted first, then built shot by shot
+              with AI-generated visuals, cut to a Nepali voiceover and captioned for sound-off viewing.
+            </p>
+            <div class="vreel-tech"><span>Script</span><span>AI-generated visuals</span><span>Editing</span><span>Captions</span></div>
+            <a class="vreel-ext" href="https://www.facebook.com/61570738914366/videos/1331266460079477/" target="_blank" rel="noopener">
+              <i class="fab fa-facebook"></i> Watch on Facebook
+            </a>
+          </div>
+        </article>
+
       </div>
 
       <div class="vchannel vchannel-alt">
@@ -259,9 +302,17 @@
           <h3>Bijok Ramailo &mdash; Comedy Nepal</h3>
           <p class="vchannel-tagline">Nepali comedy &middot; short-form reels</p>
           <p>
-            A lighter page where I make and post short Nepali comedy reels &mdash; animal comedy and
-            everyday situations people recognise instantly. Same craft as the history videos, aimed at
-            a laugh instead of a fact: the joke has to land inside fifteen seconds or the viewer scrolls.
+            A lighter page built on one simple idea: take an everyday Nepali situation &mdash; payday running
+            out, guests at the door, Dashain on a tight budget &mdash; and act it out with animals. A dog&rsquo;s
+            face, a monkey&rsquo;s reaction or a cat&rsquo;s timing says the punchline faster than any actor can,
+            and it reads the same to every age group, in any language, with the sound off.
+          </p>
+          <p>
+            That makes the format work for advertising as well as for laughs. The structure is deliberately
+            repeatable: a hook in the first two seconds, one clear idea, the animal reaction as the punchline,
+            and a clean end frame where a brand, product or call to action can sit without breaking the joke.
+            Shot vertical, captioned in Nepali and English, and cut to the same 15&ndash;30 second template every
+            time &mdash; so a sponsor gets a predictable, on-brand result instead of a one-off.
           </p>
           <div class="vchannel-links">
             <a class="btn secondary" href="https://www.facebook.com/profile.php?id=100068055216744" target="_blank" rel="noopener">
