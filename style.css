@@ -311,7 +311,7 @@ body {
   color: #ffffff;
   margin: 12px 0;
   font-weight: 700;
-  text-align: justify;
+  text-align: left;
   hyphens: manual;
   word-spacing: -0.05em;
 }
@@ -320,8 +320,7 @@ body {
   color: rgba(255, 255, 255, 0.9);
   font-size: 14px;
   line-height: 1.7;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   hyphens: manual;
   word-spacing: -0.05em;
   margin-bottom: 12px;
@@ -405,7 +404,7 @@ body {
   color: rgba(255, 255, 255, 0.95);
   font-size: 16px;
   line-height: 1.8;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 30px;
   letter-spacing: 0.3px;
 }
@@ -566,7 +565,7 @@ body {
   }
 
   .project-card p {
-    text-align: justify;
+    text-align: left;
     hyphens: manual;
   }
 }
@@ -692,7 +691,7 @@ body {
   color: rgba(255, 255, 255, 0.95);
   font-size: 14px;
   line-height: 1.8;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 15px;
   flex-grow: 1;
   letter-spacing: 0.2px;
@@ -902,7 +901,7 @@ body {
   }
 
   .about-description {
-    text-align: justify;
+    text-align: left;
     hyphens: manual;
     word-spacing: -0.05em;
   }
@@ -3741,8 +3740,7 @@ button:focus-visible {
 .vcap-card p,
 .vreel-body p,
 .vchannel-body p {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   /* No auto-hyphenation: it breaks words across lines ("compo-sition"),
      which reads worse than the uneven spacing it avoids. */
   hyphens: manual;
@@ -3912,7 +3910,7 @@ button:focus-visible {
   color: var(--muted);
   max-width: 680px;
   margin: 0 0 18px;
-  text-align: justify;
+  text-align: left;
 }
 
 .vpages-grid {
@@ -4000,7 +3998,7 @@ button:focus-visible {
 .blog-lead,
 .blog-content p,
 .vchannel-body p {
-  text-align: justify;
+  text-align: left;
   word-spacing: -0.01em;
 }
 
@@ -4108,8 +4106,7 @@ li,
 .exp-context,
 .exp-details li,
 .tl-desc {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   hyphens: manual;
   word-spacing: normal;
 }
@@ -4456,4 +4453,689 @@ body {
 .vchannel-badge-2 {
   right: auto;
   left: -6px;
+}
+
+/* ==========================================================================
+   POLISH PASS — heading rhythm, mobile menu, tap targets, form fields
+   ========================================================================== */
+
+/* 1. Section/page heading no longer collides with its subtitle.
+      The gradient underline sits on the heading's bottom edge, so the
+      subtitle needs real clearance below it. */
+.section-head h1,
+.section-head h2 {
+  margin-bottom: 14px;
+}
+
+.section-head h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.section-head h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 54px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.section-head p {
+  margin-top: 0;
+}
+
+/* 2. Mobile menu: solid panel, pinned to the viewport, with a backdrop.
+      Previously it was position:absolute with a backdrop-filter that
+      prevented its own background from painting, so page content showed
+      through — and it scrolled off-screen with the page. */
+@media (max-width: 900px) {
+  .nav-links {
+    position: fixed;
+    top: var(--nav-h, 64px);
+    left: 0;
+    right: 0;
+    background: #070a14;          /* fully opaque — no bleed-through */
+    backdrop-filter: none;
+    border-top: 1px solid var(--border);
+    max-height: calc(100vh - var(--nav-h, 64px));
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    overscroll-behavior: contain;
+    z-index: 1002;
+  }
+
+  /* Dimmed backdrop behind the open menu */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 5, 10, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    /* Must sit BELOW .navbar (z-index 1000), because the menu panel is a
+       child of the navbar and so is trapped in the navbar's stacking
+       context — a backdrop at 1000 would paint over the menu links. */
+    z-index: 998;
+  }
+
+  .nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Page must not scroll while the menu is open.
+     body alone is not enough — the root element is the scroller. */
+  html.menu-open,
+  html.menu-open body {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  .nav-links a {
+    min-height: 48px;
+  }
+}
+
+/* 3. Tap targets — 44px minimum on touch viewports */
+@media (max-width: 900px) {
+  .footer-links a,
+  .footer-social a,
+  .hero-social a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    justify-content: center;
+  }
+}
+
+/* Carousel dots were 7x7px — unusable. Keep the dot small but give it
+   a transparent 44px hit area. */
+.inv-dots button,
+.inv-dot {
+  position: relative;
+  min-width: 14px;
+  min-height: 14px;
+}
+
+.inv-dots button::before,
+.inv-dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.inv-lightbox-close,
+.inv-lightbox-nav {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* 4. Contact form: visible labels */
+.contact-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.contact-form .field label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.contact-form .form-note {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Honeypot — hidden from people, visible to bots */
+.contact-form .hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* 5. Hero stats align on a consistent baseline */
+.hero-stats {
+  align-items: start;
+}
+
+.hero-stats .stat span {
+  display: block;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+/* 6. Standalone links need a real hit area on touch devices */
+@media (max-width: 900px) {
+  .vreel-ext,
+  .back-link,
+  .extra-card-link,
+  .contact-detail a,
+  .resume-contacts a,
+  .resume-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 6px 2px;
+  }
+}
+
+/* ==========================================================================
+   EXTRA SKILLS — vertical reel cards, stats bar, workflow grid
+   ========================================================================== */
+
+/* Justified text creates rivers of whitespace in narrow columns */
+/* Long-form body copy reads better ragged-right; justified text in a
+   narrow column opens rivers of whitespace between words. */
+.extra-intro,
+.rcard-desc,
+.work-summary,
+.hero-pitch,
+.resume-summary,
+.exp-context,
+.vpages-intro,
+.about-description,
+.tl-desc {
+  text-wrap: pretty;
+}
+
+.extra-intro {
+  max-width: 68ch;
+  line-height: 1.85;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* ---- Stats bar ---- */
+.vstats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  padding: 24px 28px;
+  margin: 26px 0 30px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(37, 99, 235, 0.04));
+}
+
+.vstat strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.vstat span {
+  display: block;
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* ---- Workflow / tools ---- */
+.vtool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.vtool-group {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.vtool-label {
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  margin-bottom: 13px;
+}
+
+.vtool-label i {
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+.vtool-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.vtool-chip {
+  font-size: 11.5px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+}
+
+.vtool-note {
+  margin-top: 13px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---- Vertical reel card ---- */
+.rcard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.rcard {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1),
+              border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rcard:hover,
+.rcard:focus-within {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 26px 52px -30px rgba(14, 165, 233, 0.8);
+}
+
+/* Media is a true 9:16 phone shape — these are vertical videos */
+.rcard-media {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  background: #04060d;
+  overflow: hidden;
+}
+
+.rcard-hit {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.rcard-media img,
+.rcard-media iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: 0;
+  transition: transform 0.55s ease;
+}
+
+.rcard:hover .rcard-media img {
+  transform: scale(1.06);
+}
+
+/* Gradient scrim so the overlaid title stays readable on any frame */
+.rcard-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top,
+    rgba(5, 6, 11, 0.97) 0%,
+    rgba(5, 6, 11, 0.82) 26%,
+    rgba(5, 6, 11, 0.12) 56%,
+    rgba(5, 6, 11, 0.42) 100%);
+}
+
+.rcard-chip,
+.rcard-views {
+  position: absolute;
+  top: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(5, 6, 11, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  pointer-events: none;
+}
+
+.rcard-chip { left: 12px; }
+.rcard-views { right: 12px; letter-spacing: 0.02em; }
+.rcard-views i { color: var(--accent); }
+
+.rcard-play {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 32px -6px rgba(14, 165, 233, 0.85);
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1), background 0.3s ease;
+  z-index: 3;
+}
+
+.rcard:hover .rcard-play {
+  transform: translate(-50%, -50%) scale(1.14);
+}
+
+.rcard-play i {
+  color: #04121f;
+  font-size: 19px;
+  margin-left: 3px;
+}
+
+.rcard-over {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px;
+  z-index: 2;
+  pointer-events: none;   /* clicks fall through to the play button */
+}
+
+.rcard-kind {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.rcard-title {
+  font-size: 17px;
+  line-height: 1.32;
+  margin: 7px 0 0;
+}
+
+.rcard-ne {
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.64);
+  margin-top: 6px;
+}
+
+.rcard-foot {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px 16px 17px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Clamp to 3 lines so every card in a row is the same height */
+.rcard-desc {
+  font-size: 12.5px;
+  line-height: 1.72;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rcard-meta:not(:empty) {
+  margin-top: 11px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.rcard-meta i { color: var(--accent); margin-right: 6px; }
+
+.rcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.rcard-tags span {
+  font-size: 10.5px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.rcard-link {
+  margin-top: auto;
+  padding-top: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.rcard-link:hover { text-decoration: underline; }
+.rcard-link i { transition: transform 0.25s ease; }
+.rcard:hover .rcard-link i { transform: translateX(4px); }
+
+/* Once the real player is injected, drop the poster furniture */
+.rcard.is-playing .rcard-over,
+.rcard.is-playing .rcard-chip,
+.rcard.is-playing .rcard-views,
+.rcard.is-playing .rcard-media::after {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 980px) {
+  .rcard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vtool-grid { grid-template-columns: 1fr; }
+  .vstats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .rcard-grid { grid-template-columns: 1fr; gap: 18px; }
+  .rcard-media { aspect-ratio: 9 / 15; }
+  .rcard-title { font-size: 19px; }
+  .rcard-desc { -webkit-line-clamp: 4; line-clamp: 4; }
+  .vstats { padding: 20px; gap: 16px; }
+  .vstat strong { font-size: 24px; }
+}
+
+/* ---- Extra Skills hero: text left, auto-rotating Past Unseen stack right ---- */
+.vhero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.vhero-text .section-head h1 {
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.16;
+}
+
+.vhero .extra-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.vhero-art {
+  position: relative;
+  max-width: 100%;
+  min-height: 510px;
+  display: grid;
+  place-items: center;
+}
+
+/* Accent bloom behind the stack */
+.vhero-art::before {
+  content: "";
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  max-width: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.3), transparent 66%);
+  filter: blur(16px);
+  z-index: 0;
+}
+
+.vstage {
+  position: relative;
+  width: 232px;
+  aspect-ratio: 9 / 16;
+  z-index: 1;
+}
+
+.vphone {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #04060d;
+  box-shadow: 0 34px 68px -30px rgba(0, 0, 0, 0.95);
+  /* the slow glide between stage positions */
+  transition: transform 1.25s cubic-bezier(0.22, 0.61, 0.25, 1),
+              opacity 1.25s ease,
+              filter 1.25s ease;
+  will-change: transform, opacity;
+}
+
+.vphone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vphone-cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 46px 16px 16px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #fff;
+  background: linear-gradient(to top, rgba(5, 6, 11, 0.96), rgba(5, 6, 11, 0));
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+/* Three stage positions; the script rotates these classes on a timer */
+.vphone.is-front {
+  transform: translateX(0) rotate(-1.5deg) scale(1);
+  opacity: 1;
+  filter: none;
+  z-index: 3;
+}
+
+.vphone.is-front .vphone-cap { opacity: 1; }
+
+.vphone.is-left {
+  transform: translateX(-134px) translateY(24px) rotate(-13deg) scale(0.84);
+  opacity: 0.7;
+  filter: saturate(0.7) brightness(0.78);
+  z-index: 1;
+}
+
+.vphone.is-right {
+  transform: translateX(134px) translateY(24px) rotate(13deg) scale(0.84);
+  opacity: 0.7;
+  filter: saturate(0.7) brightness(0.78);
+  z-index: 2;
+}
+
+.vstage-brand {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: rgba(5, 6, 11, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.vstage-brand i { color: var(--accent); }
+
+.vhero-art:hover .vphone.is-front {
+  transform: translateX(0) rotate(-1.5deg) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vphone { transition: none; }
+}
+
+@media (max-width: 980px) {
+  .vhero { grid-template-columns: 1fr; gap: 34px; }
+  .vhero-art { min-height: 450px; order: 2; }
+  .vstage { width: 206px; }
+  .vphone.is-left  { transform: translateX(-118px) translateY(22px) rotate(-13deg) scale(0.84); }
+  .vphone.is-right { transform: translateX(118px) translateY(22px) rotate(13deg) scale(0.84); }
+}
+
+@media (max-width: 480px) {
+  .vhero-art { min-height: 395px; }
+  .vstage { width: 166px; }
+  .vphone.is-left  { transform: translateX(-90px) translateY(18px) rotate(-13deg) scale(0.84); }
+  .vphone.is-right { transform: translateX(90px) translateY(18px) rotate(13deg) scale(0.84); }
+  .vphone-cap { font-size: 11px; padding: 36px 12px 12px; }
 }

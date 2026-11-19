@@ -7,7 +7,7 @@ const blogs = [
     category: "Case Study",
     icon: "fa-shield-heart",
     excerpt: "A comprehensive platform dedicated to strengthening disaster risk reduction and resilience in Nepal through awareness, training, research, innovation, partnerships, and evidence-based advocacy.",
-    image: "https://ndrfnepal.org/static/app/images/homendrf.jpg",
+    image: "images/ndrf-home.jpg",
     content: `
       <p>
         The Nepal Disaster Resilience Foundation (NDRF) is a leading non-profit organization dedicated to strengthening disaster risk reduction and resilience in Nepal. As a collaborative platform of institutions, professionals, scholars, and partners, NDRF works to enhance awareness, preparedness, response, recovery, and reintegration capacities across communities and institutions.

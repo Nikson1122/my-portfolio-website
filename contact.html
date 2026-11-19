@@ -13,6 +13,11 @@
   <meta property="og:description" content="Get in touch with Nikson Shrestha, backend developer based in Lalitpur, Nepal." />
   <meta property="og:url" content="https://niksonshrestha.netlify.app/contact.html" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://niksonshrestha.netlify.app/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Nikson Shrestha — Java &amp; Python Backend Developer" />
+  <meta name="twitter:image" content="https://niksonshrestha.netlify.app/images/og-card.jpg" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070a14'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='30' font-weight='bold' text-anchor='middle' fill='%230ea5e9'%3ENS%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,7 +59,7 @@
   <section class="section" id="contact">
     <div class="container">
       <div class="section-head">
-        <h2>Contact</h2>
+        <h1>Contact</h1>
         <p>Get in touch with me</p>
       </div>
 
@@ -95,14 +100,36 @@
         <!-- Contact Form -->
         <div class="contact-form-card">
           <h3>Send me a Message</h3>
-          <form class="contact-form" name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact" />
+          <form class="contact-form" name="contact" method="POST"
+                data-netlify="true" data-netlify-honeypot="bot-field" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hp-field" aria-hidden="true">
+              <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            </p>
 
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button class="btn primary" type="submit">Send Message</button>
-</form>
+            <div class="field">
+              <label for="cf-name">Your name</label>
+              <input id="cf-name" type="text" name="name" autocomplete="name"
+                     placeholder="e.g. Asha Gurung" required />
+            </div>
+
+            <div class="field">
+              <label for="cf-email">Your email</label>
+              <input id="cf-email" type="email" name="email" autocomplete="email"
+                     placeholder="you@company.com" required />
+            </div>
+
+            <div class="field">
+              <label for="cf-message">Your message</label>
+              <textarea id="cf-message" name="message" rows="6"
+                        placeholder="What would you like to talk about?" required></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <p class="form-note">I usually reply within a day.</p>
+          </form>
 
         </div>
       </div>

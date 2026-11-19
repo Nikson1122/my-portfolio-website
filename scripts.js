@@ -9,14 +9,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.getElementById("navLinks");
 
   if (menuBtn && navLinks) {
+    // Backdrop behind the open menu (created once, reused)
+    let overlay = document.querySelector(".nav-overlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.className = "nav-overlay";
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.appendChild(overlay);
+    }
+
+    // Publish the real navbar height so the fixed menu sits flush beneath it
+    const navbar = document.querySelector(".navbar");
+    const syncNavHeight = () => {
+      if (!navbar) return;
+      document.documentElement.style.setProperty(
+        "--nav-h", Math.round(navbar.getBoundingClientRect().height) + "px"
+      );
+    };
+    syncNavHeight();
+    window.addEventListener("resize", syncNavHeight);
+
     const setMenu = (open) => {
       navLinks.classList.toggle("active", open);
+      overlay.classList.toggle("active", open);
+      // Lock page scroll so the page cannot slide away behind the menu
+      document.body.classList.toggle("menu-open", open);
+      document.documentElement.classList.toggle("menu-open", open);
       menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.innerHTML = open ? "&times;" : "&#9776;";
+      if (open) syncNavHeight();
     };
 
     menuBtn.setAttribute("aria-controls", "navLinks");
     menuBtn.setAttribute("aria-label", "Toggle navigation menu");
     setMenu(false);
+
+    overlay.addEventListener("click", () => setMenu(false));
 
     menuBtn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -39,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) setMenu(false);
+      if (window.innerWidth > 900) setMenu(false);
     });
   }
 
@@ -106,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     blogsGrid.innerHTML = sorted
       .map((blog, i) => {
         const media = blog.image
-          ? `<img src="${blog.image}" alt="${blog.title}" loading="lazy">`
+          ? `<img src="${blog.image}" alt="${blog.title}" loading="lazy" decoding="async" width="960" height="722">`
           : `<span class="blog-card-icon"><i class="fa-solid ${blog.icon || "fa-pen-nib"}"></i></span>`;
 
         return `
@@ -382,6 +410,42 @@ document.addEventListener("DOMContentLoaded", () => {
       frame.allow =
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       frame.allowFullscreen = true;
+      var card = btn.closest(".rcard");
+      if (card) card.classList.add("is-playing");
+      btn.replaceWith(frame);
+    });
+  });
+})();
+
+/* ---- Facebook reel facade: click to load the embed IN PLACE ----
+   The original markup embedded plugins/video.php with a width but no
+   height, so Facebook rendered a collapsed black box. Passing both
+   dimensions fixes it, and loading on click keeps the page fast. ---- */
+(function () {
+  document.querySelectorAll(".fb-facade").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var id = btn.getAttribute("data-fb");
+      if (!id) return;
+
+      var media = btn.closest(".rcard-media");
+      var box = media ? media.getBoundingClientRect() : btn.getBoundingClientRect();
+      var w = Math.max(240, Math.round(box.width));
+      var h = Math.round(w * 16 / 9);
+
+      var frame = document.createElement("iframe");
+      frame.src =
+        "https://www.facebook.com/plugins/video.php?href=" +
+        encodeURIComponent("https://www.facebook.com/reel/" + id) +
+        "&show_text=false&autoplay=true&width=" + w + "&height=" + h;
+      frame.title = btn.getAttribute("aria-label") || "Facebook video";
+      frame.setAttribute("scrolling", "no");
+      frame.setAttribute("frameborder", "0");
+      frame.allow =
+        "autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share";
+      frame.allowFullscreen = true;
+
+      var card = btn.closest(".rcard");
+      if (card) card.classList.add("is-playing");
       btn.replaceWith(frame);
     });
   });
@@ -389,7 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ---- Reel sliders: auto-advancing carousel on desktop ---- */
 (function () {
-  var grids = document.querySelectorAll(".vreel-grid");
+  var grids = document.querySelectorAll(".vreel-grid.is-slider");
   if (!grids.length) return;
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -544,4 +608,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
     refresh();
   });
+})();
+
+/* ---- Extra Skills hero: slow auto-rotating Past Unseen poster stack ----
+   Three posters cycle left -> front -> right -> left on a timer. The CSS
+   transition does the easing; this only swaps which class each one holds.
+   Pauses on hover, when the tab is hidden, and for reduced-motion users. */
+(function () {
+  var stage = document.getElementById("vstage");
+  if (!stage) return;
+
+  var slides = Array.prototype.slice.call(stage.querySelectorAll(".vphone"));
+  if (slides.length < 2) return;
+
+  var POSITIONS = ["is-front", "is-right", "is-left"];
+  var DELAY = 4200;
+  var index = 0;
+  var timer = null;
+  var paused = false;
+
+  function paint() {
+    slides.forEach(function (el, i) {
+      POSITIONS.forEach(function (c) { el.classList.remove(c); });
+      // slide `index` takes the front, the rest fan out behind it
+      var slot = (i - index + slides.length) % slides.length;
+      el.classList.add(POSITIONS[slot % POSITIONS.length]);
+    });
+  }
+
+  function advance() {
+    index = (index + 1) % slides.length;
+    paint();
+  }
+
+  function start() {
+    if (timer || paused) return;
+    timer = setInterval(advance, DELAY);
+  }
+
+  function stop() {
+    if (!timer) return;
+    clearInterval(timer);
+    timer = null;
+  }
+
+  paint();
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reduced.matches) return;   // leave it on the first poster, no motion
+
+  var art = stage.closest(".vhero-art") || stage;
+  art.addEventListener("mouseenter", function () { paused = true; stop(); });
+  art.addEventListener("mouseleave", function () { paused = false; start(); });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) stop(); else start();
+  });
+
+  // Only run the timer while the hero is actually on screen
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+    }, { threshold: 0.2 }).observe(art);
+  } else {
+    start();
+  }
 })();
