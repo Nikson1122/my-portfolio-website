@@ -1952,20 +1952,43 @@ body {
   opacity: 1;
 }
 
-/* Scroll reveal */
+/* Scroll reveal — the whole box opens corner-first, text and all, the same
+   way the hero portrait does.
+
+   This uses an animated mask-size rather than clip-path on purpose.
+   clip-path on the observed element breaks the IntersectionObserver that
+   drives it: clipping the box to zero area makes its intersection rect
+   empty, isIntersecting never turns true, and the element clips itself
+   into never being revealed. A mask gives the same corner-open and does
+   not affect intersection. */
 .reveal {
-  opacity: 0;
-  /* Drops in from above and overshoots slightly, so it settles instead of rising */
-  transform: translateY(-30px);
-  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  -webkit-mask-image: linear-gradient(#000, #000);
+  mask-image: linear-gradient(#000, #000);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+  -webkit-mask-size: 0% 0%;
+  mask-size: 0% 0%;
+  transition: -webkit-mask-size 0.9s cubic-bezier(0.66, 0.02, 0.28, 1),
+              mask-size 0.9s cubic-bezier(0.66, 0.02, 0.28, 1);
+  transition-delay: var(--reveal-delay, var(--auto-delay, 0ms));
+  will-change: mask-size;
 }
 
 .reveal.revealed {
-  opacity: 1;
-  transform: none;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* Once the open has finished the mask is dropped: a masked element also
+   masks its own box-shadow, which would cut the hover glow on cards for
+   the rest of the visit. The script adds this class after the transition. */
+.reveal.reveal-done {
+  -webkit-mask-image: none;
+  mask-image: none;
+  transition: none;
+  will-change: auto;
 }
 
 /* Sticky navbar condense */
@@ -5138,4 +5161,248 @@ body {
   .vphone.is-left  { transform: translateX(-90px) translateY(18px) rotate(-13deg) scale(0.84); }
   .vphone.is-right { transform: translateX(90px) translateY(18px) rotate(13deg) scale(0.84); }
   .vphone-cap { font-size: 11px; padding: 36px 12px 12px; }
+}
+
+/* ==========================================================================
+   HOMEPAGE HERO — the portrait, same place as before, but composited into
+   the page instead of sitting in a box, and rising in from the bottom.
+   Pure CSS: a script failure can never leave the photo hidden.
+   ========================================================================== */
+
+/* The card around the photo goes away so the photo can blend into the page.
+   Position and size are unchanged. */
+.hero-aside {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.portrait {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  /* Feather every edge into the background. Without a cut-out PNG this is
+     what removes the "photo in a box" read. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 9%, #000 80%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 9%, #000 80%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  animation: portraitSettle 1.4s cubic-bezier(0.22, 0.75, 0.25, 1) 0.3s both;
+}
+
+/* The existing bottom scrim would read as a hard edge now the frame is gone */
+.portrait::after { display: none; }
+
+.portrait img {
+  filter: saturate(1.06) contrast(1.04);
+}
+
+/* Accent rim glow sitting behind the photo, like the blue edge light
+   on a composited portrait */
+.portrait::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  /* must not exceed 100%: an absolutely positioned child wider than its
+     container creates scrollable overflow on narrow viewports */
+  width: 100%;
+  height: 84%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+    rgba(14, 165, 233, 0.52) 0%,
+    rgba(37, 99, 235, 0.26) 44%,
+    transparent 72%);
+  filter: blur(34px);
+  animation: rimGlow 1.3s ease-out 0.95s both;
+}
+
+/* The photo itself barely moves — a slow settle behind the curtain, so the
+   reveal reads as the window opening rather than the picture sliding. */
+@keyframes portraitSettle {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1); }
+}
+
+/* --- the reveal ----------------------------------------------------------
+   The reference site puts a page-coloured curtain over the photo and grows
+   an L-shaped notch out of its top-left corner. Clipping the photograph
+   directly is the same picture for the viewer and avoids having to colour
+   match a curtain against the hero's gradient background. */
+.portrait-real {
+  animation: photoReveal 1.25s cubic-bezier(0.66, 0.02, 0.28, 1) 0.45s both;
+}
+
+@keyframes photoReveal {
+  from { clip-path: inset(0 100% 100% 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes rimGlow {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* --- the rest of the hero follows the photo up --------------------------- */
+@keyframes heroCopyIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFactIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroSocialIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.86); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-main { animation: heroCopyIn 0.8s cubic-bezier(0.22, 0.75, 0.25, 1) 0.15s both; }
+
+.hero-facts li { animation: heroFactIn 0.5s cubic-bezier(0.22, 0.61, 0.25, 1) both; }
+.hero-facts li:nth-child(1) { animation-delay: 1.5s; }
+.hero-facts li:nth-child(2) { animation-delay: 1.6s; }
+.hero-facts li:nth-child(3) { animation-delay: 1.7s; }
+
+.hero-social a { animation: heroSocialIn 0.45s cubic-bezier(0.34, 1.4, 0.5, 1) both; }
+.hero-social a:nth-child(1) { animation-delay: 1.82s; }
+.hero-social a:nth-child(2) { animation-delay: 1.9s; }
+.hero-social a:nth-child(3) { animation-delay: 1.98s; }
+
+/* --- Hello, once the photo has landed ------------------------------------ */
+.hero-hello {
+  position: absolute;
+  left: 4%;
+  bottom: 6%;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #04121f;
+  background: linear-gradient(135deg, #7dd3fc, var(--accent));
+  box-shadow: 0 14px 30px -12px rgba(14, 165, 233, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  /* helloOut must be `forwards`, not `both`: a backwards fill would show the
+     bubble during its delay, i.e. from page load. */
+  animation: helloIn 0.5s cubic-bezier(0.34, 1.45, 0.5, 1) 2.1s both,
+             helloOut 0.6s ease 5s forwards;
+}
+
+@keyframes helloIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes helloOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-10px) scale(0.92); }
+}
+
+.hero-wave {
+  display: inline-block;
+  transform-origin: 70% 80%;
+  animation: heroWave 0.9s ease-in-out 2.35s 3 both;
+}
+
+@keyframes heroWave {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(18deg); }
+  50%      { transform: rotate(-10deg); }
+  75%      { transform: rotate(14deg); }
+}
+
+@media (max-width: 980px) {
+  .portrait { max-width: 420px; margin-inline: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-main,
+  .hero-facts li,
+  .hero-social a,
+  .portrait,
+  .portrait-real,
+  .portrait::before,
+  .hero-wave {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  .portrait::before { transform: translate(-50%, -50%); }
+  .hero-hello { display: none; }
+}
+
+/* ==========================================================================
+   Per-group stagger for the corner-open reveal, so rows ripple left to
+   right instead of every box firing at once. The observer also sets
+   --reveal-delay; these override it where a tighter rhythm reads better.
+   ========================================================================== */
+
+.rcard-grid .rcard:nth-child(1) { --reveal-delay: 0ms; }
+.rcard-grid .rcard:nth-child(2) { --reveal-delay: 140ms; }
+.rcard-grid .rcard:nth-child(3) { --reveal-delay: 280ms; }
+
+.skills-grid .skill-pill:nth-child(1)  { --reveal-delay: 0ms; }
+.skills-grid .skill-pill:nth-child(2)  { --reveal-delay: 55ms; }
+.skills-grid .skill-pill:nth-child(3)  { --reveal-delay: 110ms; }
+.skills-grid .skill-pill:nth-child(4)  { --reveal-delay: 165ms; }
+.skills-grid .skill-pill:nth-child(5)  { --reveal-delay: 220ms; }
+.skills-grid .skill-pill:nth-child(6)  { --reveal-delay: 275ms; }
+.skills-grid .skill-pill:nth-child(7)  { --reveal-delay: 330ms; }
+.skills-grid .skill-pill:nth-child(8)  { --reveal-delay: 385ms; }
+.skills-grid .skill-pill:nth-child(9)  { --reveal-delay: 440ms; }
+.skills-grid .skill-pill:nth-child(10) { --reveal-delay: 495ms; }
+.skills-grid .skill-pill:nth-child(11) { --reveal-delay: 550ms; }
+.skills-grid .skill-pill:nth-child(12) { --reveal-delay: 605ms; }
+
+.cap-grid .cap-card:nth-child(1) { --reveal-delay: 0ms; }
+.cap-grid .cap-card:nth-child(2) { --reveal-delay: 110ms; }
+.cap-grid .cap-card:nth-child(3) { --reveal-delay: 220ms; }
+.cap-grid .cap-card:nth-child(4) { --reveal-delay: 330ms; }
+
+.vtool-grid .vtool-group:nth-child(1) { --reveal-delay: 0ms; }
+.vtool-grid .vtool-group:nth-child(2) { --reveal-delay: 120ms; }
+.vtool-grid .vtool-group:nth-child(3) { --reveal-delay: 240ms; }
+
+/* A card playing video must never stay masked */
+.rcard.is-playing {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.revealed,
+  .reveal.reveal-done {
+    -webkit-mask-image: none;
+    mask-image: none;
+    transition: none;
+  }
+}
+
+/* Several reveal targets (.skill-pill, .rcard, .cap-card …) declare their
+   own `transition` further down this file for hover effects. At equal
+   specificity the later rule wins, which silently dropped the mask-size
+   transition and made those boxes snap open instead of sweeping.
+   This rule is more specific (0,2,0) and last, so the reveal always
+   animates; once .reveal-done is set it stops applying and each element
+   gets its own hover transitions back. */
+.reveal:not(.reveal-done) {
+  transition: -webkit-mask-size 0.9s cubic-bezier(0.66, 0.02, 0.28, 1),
+              mask-size 0.9s cubic-bezier(0.66, 0.02, 0.28, 1);
+  transition-delay: var(--reveal-delay, var(--auto-delay, 0ms));
 }

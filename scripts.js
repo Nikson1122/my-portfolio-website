@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* 3. Reveal sections and cards as they scroll into view */
   const revealTargets = document.querySelectorAll(
-    ".section-head, .work-card, .blog-hero, .edu-strip, .skill-group, .cap-card, .tl-item, .cta-band, .project-card, .blog-card, .resume-card, .resume-top, .contact-info-card, .contact-form-card, .skills-grid"
+    ".section-head, .work-card, .blog-hero, .edu-strip, .skill-group, .cap-card, .tl-item, .cta-band, .project-card, .blog-card, .resume-card, .resume-top, .contact-info-card, .contact-form-card, .rcard, .skill-pill, .vtool-group, .vchannel, .vpage-card, .extra-card, .vstats, .edu-chip"
   );
 
   if (reduced || !("IntersectionObserver" in window)) {
@@ -220,14 +220,23 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     revealTargets.forEach((el, i) => {
       el.classList.add("reveal");
-      el.style.setProperty("--reveal-delay", `${Math.min(i % 4, 3) * 70}ms`);
+      // Written as --auto-delay, not --reveal-delay: an inline style would
+      // beat the per-grid stagger defined in the stylesheet. The CSS reads
+      // var(--reveal-delay, var(--auto-delay, 0ms)), so a grid that defines
+      // its own rhythm wins and everything else falls back to this.
+      el.style.setProperty("--auto-delay", `${Math.min(i % 4, 3) * 70}ms`);
     });
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-          io.unobserve(entry.target);
+          const el = entry.target;
+          el.classList.add("revealed");
+          io.unobserve(el);
+          // Drop the mask once the open has finished, so the element's own
+          // box-shadow (hover glows) is not masked for the rest of the visit.
+          const delay = parseFloat(getComputedStyle(el).transitionDelay) || 0;
+          setTimeout(() => el.classList.add("reveal-done"), delay * 1000 + 1000);
         }
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
